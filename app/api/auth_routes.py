@@ -64,6 +64,17 @@ def sign_up():
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name'],
+            profile_pic_url=form.data['profile_pic_url'],
+            bio=form.data['bio'],
+            zodiac=form.data['zodiac'],
+            height=form.data['height'],
+            relationship_status=form.data['relationship_status'],
+            birthday=form.data['birthday'],
+            motto=form.data['motto'],
+            card_img_url=form.data['card_img_url'],
+            profile_background_img_url=form.data['profile_background_img_url'],
             email=form.data['email'],
             password=form.data['password']
         )
@@ -73,6 +84,52 @@ def sign_up():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
+@auth_routes.route('/user/<int:user_id>', methods=['PUT'])
+@login_required
+def edit_user(user_id):
+    """
+    Edits a User by ID
+    """
+    form = SignUpForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        user = User.query.get(user_id)
+
+        if user is None:
+            return {'errors': ['Product not found']}, 404
+
+        user.username = form.username.data
+        user.first_name = form.first_name.data
+        user.last_name = form.last_name.data
+        user.profile_pic_url = form.profile_pic_url.data
+        user.bio = form.bio.data
+        user.zodiac = form.zodiac.data
+        user.height = form.height.data
+        user.relationship_status = form.relationship_status.data
+        user.birthday = form.birthday.data
+        user.motto = form.motto.data
+        user.card_img_url = form.card_img_url.data
+        user.profile_background_img_url = form.profile_background_img_url.data
+        user.email = form.email.data
+
+        db.session.commit()
+        return user.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@auth_routes.route('/user/<int:user_id>', methods=['Delete'])
+@login_required
+def delete_user(user_id):
+    """
+    Deletes a user by ID.
+    """
+    product = User.query.get(user_id)
+    db.session.delete(product)
+    db.session.commit()
+    return {'message': 'User has been deleted!'}
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
