@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 
@@ -19,6 +19,7 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
 
+zodiacs = ['Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 
 class SignUpForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), username_exists])
@@ -26,7 +27,7 @@ class SignUpForm(FlaskForm):
     last_name = StringField('Last Name', validators=[DataRequired()])
     profile_pic_url = StringField('Profile Picture Url')
     bio = StringField('Bio')
-    zodiac = StringField('Zodiac Sign')
+    zodiac = SelectField('Zodiac Sign', choices=zodiacs)
     height = StringField('Height')
     relationship_status = StringField('Relationship Status')
     birthday = StringField('Birthday')

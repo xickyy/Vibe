@@ -5,11 +5,52 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo',
+        first_name='Demo',
+        last_name='User',
+        profile_pic_url='https://i.pinimg.com/originals/c7/0c/36/c70c3652b86753708079b17e9033c488.jpg',
+        bio='This is my Bio',
+        zodiac='Aquarius',
+        height='5"8',
+        relationship_status='single',
+        birthday='07-22-1983',
+        motto='this is my motto!',
+        card_img_url='',
+        profile_background_img_url='',
+        email='demo@aa.io',
+        password='password')
+
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie',
+        first_name='Marnie',
+        last_name='Jones',
+        profile_pic_url='https://i.pinimg.com/originals/c7/0c/36/c70c3652b86753708079b17e9033c488.jpg',
+        bio='This is my Bio',
+        zodiac='Capricorn',
+        height='4"11',
+        relationship_status='Open',
+        birthday='07-22-1983',
+        motto='this is my motto!',
+        card_img_url='',
+        profile_background_img_url='',
+        email='marnie@aa.io',
+        password='password')
+
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie',
+        first_name='Bobbie',
+        last_name='Lane',
+        profile_pic_url='https://i.pinimg.com/originals/c7/0c/36/c70c3652b86753708079b17e9033c488.jpg',
+        bio='This is my Bio',
+        zodiac='Leo',
+        height='6"1',
+        relationship_status="it's complicated",
+        birthday='07-22-1983',
+        motto='this is my motto!',
+        card_img_url='',
+        profile_background_img_url='',
+        email='bobbie@aa.io',
+        password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
@@ -28,5 +69,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()
