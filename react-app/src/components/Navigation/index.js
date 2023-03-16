@@ -13,7 +13,6 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/">
 					<img width='175' src={logo} alt=''></img>
 				</NavLink>
-				<h3 className='flicker'>V I B E</h3>
 			{isLoaded && (
 					<ProfileButton user={sessionUser} />
 			)}

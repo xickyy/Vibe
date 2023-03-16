@@ -1,8 +1,20 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
+from app.forms import EditUserForm
+from flask_login import current_user, login_user, logout_user, login_required
 
 user_routes = Blueprint('users', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @user_routes.route('/')
@@ -23,3 +35,38 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/<int:user_id>', methods=['PUT'])
+@login_required
+def edit_user(user_id):
+    """
+    Edits a User by ID
+    """
+    form = EditUserForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        user = User.query.get(user_id)
+
+        if user is None:
+            return {'errors': ['Product not found']}, 404
+
+        user.username = form.username.data
+        user.first_name = form.first_name.data
+        user.last_name = form.last_name.data
+        user.profile_pic_url = form.profile_pic_url.data
+        user.bio = form.bio.data
+        user.zodiac = form.zodiac.data
+        user.height = form.height.data
+        user.relationship_status = form.relationship_status.data
+        user.birthday = form.birthday.data
+        user.motto = form.motto.data
+        user.card_img_url = form.card_img_url.data
+        user.profile_background_img_url = form.profile_background_img_url.data
+        user.email = form.email.data
+
+        db.session.commit()
+        return user.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

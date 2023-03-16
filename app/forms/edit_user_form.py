@@ -19,8 +19,9 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
 
+zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 
-class SignUpForm(FlaskForm):
+class EditUserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), username_exists])
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
@@ -34,4 +35,4 @@ class SignUpForm(FlaskForm):
     card_img_url = StringField('Profile Card Url')
     profile_background_img_url = StringField('Profile Background Image Url')
     email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    password = StringField('password')

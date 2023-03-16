@@ -17,9 +17,8 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let zodiac = 'Rather not say'
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, firstName, lastName, email, zodiac, password));
+			const data = await dispatch(signUp(username, firstName, lastName, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -56,7 +55,6 @@ function SignupFormModal() {
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
-						required
 					/>
 				</label>
 				<label>
@@ -65,7 +63,6 @@ function SignupFormModal() {
 						type="text"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
-						required
 					/>
 				</label>
 				<label>

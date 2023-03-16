@@ -97,6 +97,44 @@ export const signUp = (username, firstName, lastName, email, zodiac, password) =
 	}
 };
 
+
+export const editUser = (id, username, firstName, lastName, email, zodiac, profilePic, bio, height, relStatus, birthday, motto, cardImg, background) => async (dispatch) => {
+	const response = await fetch(`/api/users/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			username,
+			first_name: firstName,
+			last_name: lastName,
+			email,
+			zodiac,
+			profile_pic_url: profilePic,
+			bio,
+			height,
+			relationship_status: relStatus,
+			birthday,
+			motto,
+			card_img_url: cardImg,
+			profile_background_img_url: background
+		}),
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setUser(data));
+		return null;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
