@@ -5,16 +5,25 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import * as sessionActions from '../../store/session';
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  const { closeModal } = useModal();
   const ulRef = useRef();
 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+  };
+
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    closeModal()
+    return dispatch(sessionActions.demoLogin());
   };
 
   useEffect(() => {
@@ -71,6 +80,9 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <form className="demo-login-div" onSubmit={demoSubmit}>
+              <button className="demo-login">Demo Login</button>
+            </form>
           </>
         )}
       </ul>

@@ -1,7 +1,19 @@
 .profile-dropdown {
   position: absolute;
+  background-color: rgb(78, 78, 230);
+  margin-left: -98px;
+  margin-top: 50px;
 }
 
 .hidden {
   display: none;
+}
+
+.Navigation-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+ .prof-button {
+  display: flex;
 }
