@@ -22,7 +22,7 @@ const UserProfilePage = () => {
       setUser(user);
     };
     fetchData();
-  }, []);
+  }, [userId]);
 
   const editUser = () => {
     return (

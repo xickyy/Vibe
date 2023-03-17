@@ -24,8 +24,8 @@ function EditUserModal({user}) {
 	const [motto, setMotto] = useState(user.motto || '');
 	const [cardImg, setCardImg] = useState(user.cardImgUrl || '');
 	const [background, setBackground] = useState(user.profileBackgroundImgUrl || '')
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	// const [password, setPassword] = useState("");
+	// const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
