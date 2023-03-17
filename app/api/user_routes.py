@@ -70,3 +70,15 @@ def edit_user(user_id):
         return user.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@user_routes.route('/<int:user_id>', methods=['Delete'])
+@login_required
+def delete_user(user_id):
+    """
+    Deletes a user by ID.
+    """
+    product = User.query.get(user_id)
+    db.session.delete(product)
+    db.session.commit()
+    return {'message': 'User has been deleted!'}

@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { editUser } from "../../store/session";
+import { deleteUserThunk } from "../../store/session";
+import { useHistory } from "react-router-dom";
 import "./EditUserModal.css";
 
 function EditUserModal({user}) {
 
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const [email, setEmail] = useState(user.email);
-	const [firstName, setFirstName] = useState(user.firstName);
-	const [lastName, setLastName] = useState(user.lastName);
+	const [firstName, setFirstName] = useState(user.firstName || '');
+	const [lastName, setLastName] = useState(user.lastName || '');
 	const [username, setUsername] = useState(user.username);
-	const [profilePic, setProfilePic] = useState(user.profilePicUrl);
-	const [bio, setBio] = useState(user.bio);
-	const [zodiac, setZodiac] = useState(user.zodiac);
-	const [height, setHeight] = useState(user.height);
-	const [relStatus, setRelStatus] = useState(user.relationshipStatus);
-	const [birthday, setBirthday] = useState(user.birthday);
-	const [motto, setMotto] = useState(user.motto);
-	const [cardImg, setCardImg] = useState(user.cardImgUrl);
-	const [background, setBackground] = useState(user.profileBackgroundImgUrl)
+	const [profilePic, setProfilePic] = useState(user.profilePicUrl || '');
+	const [bio, setBio] = useState(user.bio || '');
+	const [zodiac, setZodiac] = useState(user.zodiac || 'Rather not say');
+	const [height, setHeight] = useState(user.height || '');
+	const [relStatus, setRelStatus] = useState(user.relationshipStatus || 'Rather not say');
+	const [birthday, setBirthday] = useState(user.birthday || '');
+	const [motto, setMotto] = useState(user.motto || '');
+	const [cardImg, setCardImg] = useState(user.cardImgUrl || '');
+	const [background, setBackground] = useState(user.profileBackgroundImgUrl || '')
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -46,11 +49,22 @@ function EditUserModal({user}) {
 		}
 	};
 
+	const handleDelete = () => {
+		const confirm = window.confirm(
+			`Are you sure you wish to delete you're profile? there is no reversing this action but you can always make a new account`
+		);
+		if (confirm) {
+			// closeModal().then(() => history.push('/')).then(dispatch(deleteUserThunk(userId)))
+			dispatch(deleteUserThunk(userId)).then(closeModal()).then(() => history.push('/'))
+		}
+	}
+
 	let zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 	let realtionships = ['Rather not say', 'Single', 'Available', 'In a Relationship', 'Married', 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
 	return (
 		<>
-			<h1>Sign Up</h1>
+			<h1>Edit Profile</h1>
+			<button onClick={handleDelete}>Delete Profile</button>
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (

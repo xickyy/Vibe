@@ -10,7 +10,10 @@ const UserProfilePage = () => {
   const [currentUser, setUser] = useState([]);
 
   let userState = useSelector((state) => state.session);
-  let userId = userState.user.id;
+  let userId;
+  if (userState.user) {
+    userId = userState.user.id;
+  }
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const DELETE_USER = "session/DELETE_USER";
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+const deleteUser = (id) => ({
+	type: DELETE_USER,
+	id
+})
 
 const initialState = { user: null };
 
@@ -55,6 +61,16 @@ export const login = (email, password) => async (dispatch) => {
 	}
 };
 
+export const deleteUserThunk = (id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    dispatch(removeUser());
+  }
+};
+
 export const logout = () => async (dispatch) => {
 	const response = await fetch("/api/auth/logout", {
 		headers: {
@@ -67,7 +83,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, firstName, lastName, email, zodiac, password) => async (dispatch) => {
+export const signUp = (username, firstName, lastName, email, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -78,7 +94,6 @@ export const signUp = (username, firstName, lastName, email, zodiac, password) =
 			first_name: firstName,
 			last_name: lastName,
 			email,
-			zodiac,
 			password,
 		}),
 	});
