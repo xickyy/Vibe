@@ -2,10 +2,12 @@ import './SearchBar.css'
 
 import React, { useState, useEffect } from 'react'
 import { allFriendsThunk } from "../../store/friends";
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 const SearchBar = ({ placeholder, data }) => {
 
+  const sessionUser = useSelector(state => state.session.user);
   const [allUsers, setAllUsers] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [search, setSearch] = useState('');
@@ -17,8 +19,12 @@ const SearchBar = ({ placeholder, data }) => {
       const data = await response.json();
       setAllUsers(data.users);
     }
-    dispatch(allFriendsThunk()).then(() => getUsers())
-  }, [dispatch]);
+    getUsers().then(() => {
+      if (sessionUser) {
+        dispatch(allFriendsThunk())
+      }
+    })
+  }, [dispatch, sessionUser]);
 
 
   const handleFilter = (e) => {

@@ -7,6 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import * as sessionActions from '../../store/session';
 import { useModal } from "../../context/Modal";
+import { clearFriendsThunk } from "../../store/friends";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(clearFriendsThunk())
     history.push('/');
   };
 

@@ -3,27 +3,34 @@ import "./FriendProfilePage.css";
 import { getFriendThunk } from "../../store/profile";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory, Redirect } from "react-router-dom";
-import { addFriendThunk, allFriendsThunk} from "../../store/friends";
+import { useParams, Redirect } from "react-router-dom";
+import { addFriendThunk, deleteFriendThunk} from "../../store/friends";
 
 
 const FriendProfilePage = () => {
 
+
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
   const { friendId } = useParams();
 
   const friendState = useSelector(state => state.friends)
   const userState = useSelector(state => state.session)
+  const profileState = useSelector(state => state.profile)
+
   let userId;
   if (userState.user) {
     userId = userState.user.id
   }
 
+  let profile;
+  if (profileState.user) {
+    profile = profileState.user
+  }
+
   useEffect(() => {
     dispatch(getFriendThunk(friendId))
-      .then(() => setIsLoaded(true));
+    .then(() => setIsLoaded(true));
   }, [dispatch, friendId]);
 
 
@@ -31,12 +38,16 @@ const FriendProfilePage = () => {
     return <Redirect to='/current_user' />
   }
 
-
   const friendRank = 0;
 
   const handleAddFriend = () => {
     dispatch(addFriendThunk(userId, friendId, friendRank));
   };
+
+  const handleDeleteFriend = () => {
+    let friendTableId = Object.values(friendState).find(friend => friend.friendId === parseInt(friendId))
+    dispatch(deleteFriendThunk(friendTableId.id))
+  }
 
   const friendButton = () => {
     if (userState.user === null) {
@@ -45,20 +56,21 @@ const FriendProfilePage = () => {
     if (userState.user.id === parseInt(friendId)) {
       return
     }
-    if (!Object.values(friendState).find(friend => friend.friendId == friendId)) {
+    if (!Object.values(friendState).find(friend => friend.friendId === parseInt(friendId))) {
       return (
         <button onClick={() => handleAddFriend()}>Follow this user</button>
       )
     } else {
       return (
-        <button>Unfollow this user</button>
+        <button onClick={() => handleDeleteFriend()}>Unfollow this user</button>
       )
     }
   }
 
   return (
+    isLoaded &&
     <>
-    <h1>friend</h1>
+    <h1>friend-{profile.firstName}</h1>
     {friendButton()}
     </>
   )

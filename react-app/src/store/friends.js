@@ -1,5 +1,7 @@
 const ADD_FRIEND = 'friends/ADD_FRIEND';
 const GET_FRIENDS = 'friends/GET_FRIEND';
+const CLEAR_FRIENDS = 'friends/CLEAR_FRIENDS';
+const DELETE_FRIEND = 'friends/DELETE_FRIEND';
 
 
 const addFriend = (user) => ({
@@ -11,6 +13,15 @@ const getFriends = (friends) => ({
   type: GET_FRIENDS,
   friends
 })
+
+const clearFriends = () => ({
+  type: CLEAR_FRIENDS
+})
+
+const deleteFriend = (friend) => ({
+    type: DELETE_FRIEND,
+    friend,
+});
 
 
 const initialState = {};
@@ -41,6 +52,20 @@ export const allFriendsThunk = () => async (dispatch) => {
   return res;
 };
 
+export const clearFriendsThunk = () => async (dispatch) => {
+  dispatch(clearFriends())
+}
+
+export const deleteFriendThunk = (id) => async (dispatch) => {
+  const res = await fetch(`/api/friends/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    dispatch(deleteFriend(id));
+  }
+};
+
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
@@ -51,6 +76,12 @@ export default function reducer(state = initialState, action) {
       return newState;
     case ADD_FRIEND:
       newState[action.user.id] = action.user
+      return newState;
+    case CLEAR_FRIENDS:
+      newState = {}
+      return newState;
+    case DELETE_FRIEND:
+      delete newState[action.friend]
       return newState;
     default:
       return state;

@@ -33,3 +33,14 @@ def add_friend():
         db.session.commit()
         return friend.to_dict()
     return {"errors" : "error"}
+
+
+@friend_routes.route('/<int:friend_id>', methods=["DELETE"])
+def deletes_friend(friend_id):
+    """
+    Deletes a Friend.
+    """
+    friend = Friend.query.get(friend_id)
+    db.session.delete(friend)
+    db.session.commit()
+    return {'id': friend_id ,'message': 'Friend has been deleted!'}
