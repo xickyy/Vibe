@@ -18,6 +18,10 @@ const FriendProfilePage = () => {
       .then(() => setIsLoaded(true));
   }, [dispatch, friendId]);
 
+  const addFriendButton = () => {
+
+  }
+
   return (
     <h1>friend</h1>
   )

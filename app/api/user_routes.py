@@ -82,3 +82,8 @@ def delete_user(user_id):
     db.session.delete(product)
     db.session.commit()
     return {'message': 'User has been deleted!'}
+
+
+@user_routes.route('/friends', methods=['GET'])
+def get_friends(user_id):
+    pass
