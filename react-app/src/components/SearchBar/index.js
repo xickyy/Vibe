@@ -1,12 +1,15 @@
 import './SearchBar.css'
 
 import React, { useState, useEffect } from 'react'
+import { allFriendsThunk } from "../../store/friends";
+import { useDispatch } from 'react-redux';
 
 const SearchBar = ({ placeholder, data }) => {
 
   const [allUsers, setAllUsers] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -14,8 +17,9 @@ const SearchBar = ({ placeholder, data }) => {
       const data = await response.json();
       setAllUsers(data.users);
     }
+    dispatch(allFriendsThunk())
     getUsers()
-  }, []);
+  }, [dispatch]);
 
 
   const handleFilter = (e) => {
