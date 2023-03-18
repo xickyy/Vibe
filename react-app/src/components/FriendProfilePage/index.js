@@ -13,8 +13,6 @@ const FriendProfilePage = () => {
   const history = useHistory();
   const { friendId } = useParams();
 
-  console.log('FRIEND ID',friendId)
-
   useEffect(() => {
     dispatch(getFriendThunk(friendId))
       .then(() => setIsLoaded(true));
