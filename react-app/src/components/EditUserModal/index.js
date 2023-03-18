@@ -54,7 +54,6 @@ function EditUserModal({user}) {
 			`Are you sure you wish to delete you're profile? there is no reversing this action but you can always make a new account`
 		);
 		if (confirm) {
-			// closeModal().then(() => history.push('/')).then(dispatch(deleteUserThunk(userId)))
 			dispatch(deleteUserThunk(userId)).then(closeModal()).then(() => history.push('/'))
 		}
 	}
