@@ -14,11 +14,13 @@ function Navigation({ isLoaded }) {
 			<NavLink exact to="/">
 				<img width='175' src={logo} alt=''></img>
 			</NavLink>
-			<SearchBar placeholder='Find a Friend!' />
 			{isLoaded && (
-				<div className='prof-button'>
-					<ProfileButton user={sessionUser} />
-				</div>
+				<>
+					<SearchBar placeholder='Find a Friend!' />
+					<div className='prof-button'>
+						<ProfileButton user={sessionUser} />
+					</div>
+				</>
 			)}
 		</div>
 

@@ -17,8 +17,7 @@ const SearchBar = ({ placeholder, data }) => {
       const data = await response.json();
       setAllUsers(data.users);
     }
-    dispatch(allFriendsThunk())
-    getUsers()
+    dispatch(allFriendsThunk()).then(() => getUsers())
   }, [dispatch]);
 
 

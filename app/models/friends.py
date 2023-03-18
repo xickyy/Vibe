@@ -14,11 +14,11 @@ class Friend(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     friend_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
-    user = relationship("User", foreign_keys="Friend.user_id")
-    friend = relationship("User", foreign_keys="Friend.friend_id")
+    # user = relationship("User", foreign_keys="Friend.user_id")
+    # friend = relationship("User", foreign_keys="Friend.friend_id")
 
-    # user = relationship("User", foreign_keys=[user_id])
-    # friend = relationship("User", foreign_keys=[friend_id])
+    user = relationship("User", foreign_keys=[user_id])
+    friend = relationship("User", foreign_keys=[friend_id])
 
 
 
