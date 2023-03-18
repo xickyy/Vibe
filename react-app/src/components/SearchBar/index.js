@@ -17,7 +17,6 @@ const SearchBar = ({ placeholder, data }) => {
     getUsers()
   }, []);
 
-  console.log(allUsers)
 
   const handleFilter = (e) => {
     const searchWord = e.target.value

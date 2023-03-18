@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfilePage from "./components/UserProfilePage";
+import FriendProfilePage from "./components/FriendProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path='/current_user'>
             <UserProfilePage />
+          </Route>
+          <Route exact path='/users/:friendId'>
+            <FriendProfilePage />
           </Route>
         </Switch>
       )}
