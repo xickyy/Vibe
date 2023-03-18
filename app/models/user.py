@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    friends = db.relationship("Friend", back_populates="user")
+    # friends = db.relationship("Friend", back_populates="user")
 
     @property
     def password(self):
