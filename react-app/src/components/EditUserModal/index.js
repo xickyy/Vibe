@@ -59,7 +59,7 @@ function EditUserModal({user}) {
 	}
 
 	let zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
-	let realtionships = ['Rather not say', 'Single', 'Available', 'In a Relationship', 'Married', "Don't talk to me", 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
+	let realtionships = ['Rather not say', 'Single', 'Situationship', 'Available', 'In a Relationship', 'Married', "Don't talk to me", 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
 	return (
 		<>
 			<h1>Edit Profile</h1>
