@@ -13,6 +13,7 @@ class Post(db.Model):
     date = db.Column(db.DateTime, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    user = db.relationship("User", back_populates="posts")
 
 
     def to_dict(self):

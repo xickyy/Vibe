@@ -1,5 +1,6 @@
 from app.models import db, Post, environment, SCHEMA
 from sqlalchemy.sql import text
+import datetime
 
 
 # Adds a demo user, you can add other users here if you want
@@ -8,19 +9,19 @@ def seed_posts():
         body='ayee ayeee',
         mood='Tired',
         user_id=1,
-        date='create_date')
+        date= datetime.datetime.now())
 
     post2 = Post(
-        body='ayee ayeee',
-        mood='Tired',
-        user_id=1,
-        date='create_date')
+        body='This is my first post! :D',
+        mood='Excited',
+        user_id=2,
+        date= datetime.datetime.now())
 
     post3 = Post(
-        body='ayee ayeee',
-        mood='Tired',
-        user_id=1,
-        date='create_date')
+        body='How does this app even work??',
+        mood='Confused',
+        user_id=3,
+        date= datetime.datetime.now())
 
     db.session.add(post1)
     db.session.add(post2)
