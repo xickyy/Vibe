@@ -26,6 +26,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     friends = db.relationship("Friend", foreign_keys='Friend.friend_id', back_populates="user")
+    posts = db.relationship("Post", back_populates="user")
 
     @property
     def password(self):
