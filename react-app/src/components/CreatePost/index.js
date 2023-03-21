@@ -44,7 +44,7 @@ function CreatePost() {
   };
 
   return (
-    <>
+    <div className="create-post-container">
       <h3>Create a Post!</h3>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -76,7 +76,7 @@ function CreatePost() {
         </label>
         <button type="submit">Post!</button>
       </form>
-    </>
+    </div>
   );
 }
 

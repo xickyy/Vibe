@@ -20,5 +20,7 @@ class Post(db.Model):
         return {
             'id': self.id,
             'body': self.body,
-            'mood': self.mood
+            'mood': self.mood,
+            'userId': self.user_id,
+            'user': self.user.to_dict()
         }

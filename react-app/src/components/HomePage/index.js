@@ -1,10 +1,10 @@
 import "./HomePage.css";
 
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CreatePost from '../CreatePost';
-import { allPostsThunk } from "../../store/posts";
+import ShowPosts from "../ShowPosts";
 
 function HomePage () {
 
@@ -12,9 +12,6 @@ function HomePage () {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(allPostsThunk()).then(() => setIsLoaded(true));
-  }, [dispatch]);
 
 
 
@@ -23,6 +20,7 @@ function HomePage () {
       <>
       <div>Home</div>
       <CreatePost />
+      <ShowPosts />
       </>
     )
   } else {
