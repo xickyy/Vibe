@@ -34,7 +34,6 @@ export const createPostThunk = (payload) => async (dispatch) => {
 export const allPostsThunk = () => async (dispatch) => {
   const res = await fetch("/api/posts/");
   const data = await res.json();
-  console.log('THUNKKKKK',data)
   dispatch(getPosts(data));
   return res;
 };
@@ -46,6 +45,11 @@ export default function reducer(state = initialState, action) {
     case CREATE_POST:
       newState[action.post.id] = action.post
       return newState;
+    case GET_POSTS:
+      action.posts.forEach((post) => {
+        newState[post.id] = post
+      });
+      return newState
     default:
       return state;
   }
