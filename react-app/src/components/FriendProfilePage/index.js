@@ -4,7 +4,7 @@ import { getFriendThunk } from "../../store/profile";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { addFriendThunk, deleteFriendThunk} from "../../store/friends";
+import { addFriendThunk, deleteFriendThunk } from "../../store/friends";
 
 
 const FriendProfilePage = () => {
@@ -30,7 +30,7 @@ const FriendProfilePage = () => {
 
   useEffect(() => {
     dispatch(getFriendThunk(friendId))
-    .then(() => setIsLoaded(true));
+      .then(() => setIsLoaded(true));
   }, [dispatch, friendId]);
 
 
@@ -70,8 +70,8 @@ const FriendProfilePage = () => {
   return (
     isLoaded &&
     <>
-    <h1>friend-{profile.firstName}</h1>
-    {friendButton()}
+      <h1>friend-{profile.firstName}</h1>
+      {friendButton()}
     </>
   )
 

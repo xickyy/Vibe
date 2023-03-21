@@ -9,7 +9,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(255), nullable=False)
-    mood = db.Column(db.String(40), nullable=False)
+    mood = db.Column(db.String(40))
     date = db.Column(db.DateTime, nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))

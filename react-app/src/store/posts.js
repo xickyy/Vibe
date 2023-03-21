@@ -9,16 +9,13 @@ const createPost = (post) => ({
 
 const initialState = {}
 
-export const createPostThunk = (userId, body, mood, dateTime) => async (dispatch) => {
+export const createPostThunk = (payload) => async (dispatch) => {
   const res = await fetch("/api/posts/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      user_id: userId,
-      body: body,
-      mood: mood,
-      date: dateTime
-    })
+    body: JSON.stringify(
+      payload
+    )
   });
 
   if (res.ok) {
