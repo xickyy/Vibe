@@ -1,9 +1,15 @@
 const CREATE_POST = 'posts/CREATE_POST';
+const GET_POSTS = 'posts/GET_POSTS';
 
 
 const createPost = (post) => ({
   type: CREATE_POST,
   post
+})
+
+const getPosts = (posts) => ({
+  type: GET_POSTS,
+  posts
 })
 
 
@@ -23,6 +29,14 @@ export const createPostThunk = (payload) => async (dispatch) => {
     dispatch(createPost(post));
     return post
   }
+};
+
+export const allPostsThunk = () => async (dispatch) => {
+  const res = await fetch("/api/posts/");
+  const data = await res.json();
+  console.log('THUNKKKKK',data)
+  dispatch(getPosts(data));
+  return res;
 };
 
 

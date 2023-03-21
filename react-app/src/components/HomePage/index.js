@@ -1,12 +1,22 @@
 import "./HomePage.css";
 
 import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import CreatePost from '../CreatePost';
+import { allPostsThunk } from "../../store/posts";
 
 function HomePage () {
 
   let userState = useSelector((state) => state.session);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(allPostsThunk()).then(() => setIsLoaded(true));
+  }, [dispatch]);
+
+
 
   if(userState.user){
     return (

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, render_template, request
-from app.models import Post, Friend, db
+from app.models import Post, Friend, User, db
 from flask_login import current_user
 from ..forms.post_form import PostForm
 import datetime
@@ -12,8 +12,10 @@ def all_posts():
     """
     Query for all users posts and users friends posts.
     """
-    friends = Friend.query.filter(Friend.user_id == current_user.id).all()
-    return {'friends': [friend.to_dict() for friend in friends]}
+    
+    posts = Post.query.join(User).join(Friend, User.id == Friend.friend_id).filter((Friend.user_id == current_user.id) | (Post.user_id == current_user.id)).all()
+    return [post.to_dict() for post in posts]
+
 
 
 @post_routes.route('/', methods=["POST"])
