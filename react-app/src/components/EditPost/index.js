@@ -1,11 +1,12 @@
-import "./CreatePost.css";
+import "./EditPost.css";
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostThunk } from '../../store/posts'
+import { editPostThunk } from '../../store/posts'
+import { useModal } from "../../context/Modal";
 
 
-function CreatePost() {
+function EditPost() {
 
   const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ function CreatePost() {
       mood
     }
     if (userId) {
-      const data = await dispatch(createPostThunk(payload));
+      const data = await dispatch(editPostThunk(payload));
       setBody('');
       setMood('None')
       if (data && data.id) {
@@ -76,4 +77,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default EditPost;
