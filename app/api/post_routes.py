@@ -7,6 +7,18 @@ import datetime
 
 post_routes = Blueprint('posts', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+    
+
 @post_routes.route('/', methods=["GET"])
 def all_posts():
     """
@@ -50,7 +62,7 @@ def delete_post(post_id):
 
 
 @post_routes.route('/<int:post_id>', methods=["PUT"])
-def edits_a_product(post_id):
+def edit_post(post_id):
     """
     Edits a post by ID.
     """
@@ -61,7 +73,7 @@ def edits_a_product(post_id):
         post = Post.query.get(post_id)
 
         if post is None:
-            return {'errors': ['Postt not found']}, 404
+            return {'errors': ['Post not found']}, 404
 
         if post.user_id != current_user.id:
             return {'errors': ['You are not authorized to edit this post']}, 403

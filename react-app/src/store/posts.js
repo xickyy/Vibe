@@ -1,6 +1,7 @@
 const CREATE_POST = 'posts/CREATE_POST';
 const GET_POSTS = 'posts/GET_POSTS';
 const DELETE_POST = 'posts/DELETE_POST';
+const EDIT_POST = 'posts/EDIT_POST';
 
 
 const createPost = (post) => ({
@@ -17,6 +18,11 @@ const deletePost = (postId) => ({
   type: DELETE_POST,
   postId
 })
+
+const editPost = (post) => ({
+    type: EDIT_POST,
+    post,
+});
 
 
 const initialState = {}
@@ -54,6 +60,20 @@ export const deletePostThunk = (id) => async (dispatch) => {
   }
 }
 
+export const editPostThunk = (post) => async (dispatch) => {
+  const res = await fetch(`/api/posts/${post.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(post),
+  });
+
+  if (res.ok) {
+    const editedPost = await res.json();
+    dispatch(editPost(editedPost));
+    return editedPost;
+  }
+};
+
 
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
@@ -68,7 +88,10 @@ export default function reducer(state = initialState, action) {
       return newState
     case DELETE_POST:
       delete newState[action.postId]
-      return newState  
+      return newState
+      case EDIT_POST:
+        newState[action.post.id] = action.post;
+        return newState;    
     default:
       return state;
   }

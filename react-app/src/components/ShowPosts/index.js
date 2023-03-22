@@ -3,6 +3,8 @@ import "./ShowPosts.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { allPostsThunk, deletePostThunk } from "../../store/posts";
+import OpenModalButton from "../OpenModalButton";
+import EditPost from "../EditPost";
 
 
 const ShowPosts = () => {
@@ -22,10 +24,10 @@ const ShowPosts = () => {
   if (isLoaded) {
     POSTS = Object.values(postsState);
     postsSorted = POSTS.sort((a, b) => {
-      if(a.id < b.id) {
+      if (a.id < b.id) {
         return 1
       }
-      if(a.id > b.id) {
+      if (a.id > b.id) {
         return -1
       }
     })
@@ -35,14 +37,22 @@ const ShowPosts = () => {
     dispatch(deletePostThunk(id))
   }
 
-  const handleEdit = (id) => {
-    return
-  }
 
   const userDelete = (postId, postUserId) => {
-    if(userState.user && userId === parseInt(postUserId)){
+    if (userState.user && userId === parseInt(postUserId)) {
       return (
-      <button onClick={() => handleDelete(postId)}>Delete Post</button>
+        <button onClick={() => handleDelete(postId)}>Delete Post</button>
+      )
+    }
+  }
+
+  const userEdit = (post) => {
+    if (userState.user && userId === parseInt(post.userId)) {
+      return (
+        <OpenModalButton
+          buttonText="Edit Post"
+          modalComponent={<EditPost post={post} />}
+        />
       )
     }
   }
@@ -53,10 +63,10 @@ const ShowPosts = () => {
         postsSorted.map((post) => (
           <div key={post.id} className='post-container'>
             <p>{post.user.username}</p>
-            <img className="post-profile-pic" src={post.user.profilePicUrl}></img>
+            <img className="post-profile-pic" src={post.user.profilePicUrl} alt=''></img>
             <h2>{post.body}</h2>
             <p>Mood: {post.mood}</p>
-            <button onClick={handleEdit(post.id)}>Edit Post</button>
+            {userEdit(post)}
             {userDelete(post.id, post.userId)}
           </div>
         ))}

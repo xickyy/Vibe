@@ -6,13 +6,14 @@ import { editPostThunk } from '../../store/posts'
 import { useModal } from "../../context/Modal";
 
 
-function EditPost() {
+function EditPost({ post }) {
 
   const dispatch = useDispatch();
 
-  const [body, setBody] = useState('');
-  const [mood, setMood] = useState('None');
+  const [body, setBody] = useState(post.body);
+  const [mood, setMood] = useState(post.mood);
   const [errors, setErrors] = useState([]);
+  const { closeModal } = useModal();;
 
   let userState = useSelector((state) => state.session);
   let userId = userState.user.id;
@@ -22,6 +23,7 @@ function EditPost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      id: post.id,  
       body,
       mood
     }
@@ -29,6 +31,7 @@ function EditPost() {
       const data = await dispatch(editPostThunk(payload));
       setBody('');
       setMood('None')
+      closeModal();
       if (data && data.id) {
         return
       }
