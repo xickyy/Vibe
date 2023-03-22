@@ -4,3 +4,9 @@
   margin-top: 4px;
   margin-bottom: 4px;
 }
+
+.post-profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}

@@ -12,13 +12,13 @@ function CreatePost() {
   const history = useHistory();
 
   const [body, setBody] = useState('');
-  const [mood, setMood] = useState('');
+  const [mood, setMood] = useState('None');
   const [errors, setErrors] = useState([]);
 
   let userState = useSelector((state) => state.session);
   let userId = userState.user.id;
 
-  const moods = ['Excited!', 'Sad...', 'CoNfUsEd??', 'Whatever', 'Bored', 'MAD!!!', 'In Loveee', 'Annoyed', 'Sleepy', 'Exhausted', 'Anxious', 'Pressed']
+  const moods = ['None', 'Excited!', 'Sad...', 'CoNfUsEd??', 'Whatever', 'Bored', 'MAD!!!', 'In Loveee', 'Annoyed', 'Sleepy', 'Exhausted', 'Anxious', 'Pressed']
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,19 +27,16 @@ function CreatePost() {
       mood
     }
     if (userId) {
-
-      console.log('BODYY',body)
-      console.log('DATEEEE',mood)
-
-      await dispatch(createPostThunk(payload));
-      // console.log('DATAAA', data)
-    //   if (data && data.id) {
-    //     return
-    //   }
-    // } else {
-    //   setErrors([
-    //     "Something went wrong",
-    //   ]);
+      const data = await dispatch(createPostThunk(payload));
+      setBody('');
+      setMood('None')
+      if (data && data.id) {
+        return
+      }
+    } else {
+      setErrors([
+        "Something went wrong",
+      ]);
     }
   };
 
@@ -57,6 +54,7 @@ function CreatePost() {
           <textarea
             type="text"
             value={body}
+            required
             onChange={(e) => setBody(e.target.value)}
           />
         </label>

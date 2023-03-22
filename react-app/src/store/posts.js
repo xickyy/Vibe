@@ -1,5 +1,6 @@
 const CREATE_POST = 'posts/CREATE_POST';
 const GET_POSTS = 'posts/GET_POSTS';
+const DELETE_POST = 'posts/DELETE_POST';
 
 
 const createPost = (post) => ({
@@ -10,6 +11,11 @@ const createPost = (post) => ({
 const getPosts = (posts) => ({
   type: GET_POSTS,
   posts
+})
+
+const deletePost = (postId) => ({
+  type: DELETE_POST,
+  postId
 })
 
 
@@ -38,6 +44,16 @@ export const allPostsThunk = () => async (dispatch) => {
   return res;
 };
 
+export const deletePostThunk = (id) => async (dispatch) => {
+  const res = await fetch(`/api/posts/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    dispatch(deletePost(id));
+  }
+}
+
 
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
@@ -50,6 +66,9 @@ export default function reducer(state = initialState, action) {
         newState[post.id] = post
       });
       return newState
+    case DELETE_POST:
+      delete newState[action.postId]
+      return newState  
     default:
       return state;
   }

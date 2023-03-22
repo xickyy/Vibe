@@ -9,19 +9,19 @@ def seed_posts():
         body='ayee ayeee',
         mood='Tired',
         user_id=1,
-        date= datetime.datetime.now())
+        date= datetime.datetime(2020, 3, 21, 18, 7, 50, 873302))
 
     post2 = Post(
         body='This is my first post! :D',
         mood='Excited',
         user_id=2,
-        date= datetime.datetime.now())
+        date= datetime.datetime(2021, 8, 13, 4, 7, 50, 873302))
 
     post3 = Post(
         body='How does this app even work??',
         mood='Confused',
         user_id=3,
-        date= datetime.datetime.now())
+        date= datetime.datetime(2022, 6, 5, 12, 7, 50, 873302))
 
     db.session.add(post1)
     db.session.add(post2)

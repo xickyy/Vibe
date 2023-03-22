@@ -36,3 +36,14 @@ def create_post():
         db.session.commit()
         return post.to_dict()
     return {"errors" : "error"}
+
+
+@post_routes.route('/<int:post_id>', methods=["DELETE"])
+def delete_post(post_id):
+    """
+    Deletes a post by ID.
+    """
+    post = Post.query.get(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return {'message': 'Post has been deleted!'}

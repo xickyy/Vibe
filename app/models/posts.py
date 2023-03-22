@@ -21,6 +21,7 @@ class Post(db.Model):
             'id': self.id,
             'body': self.body,
             'mood': self.mood,
+            'date': self.date,
             'userId': self.user_id,
             'user': self.user.to_dict()
         }
