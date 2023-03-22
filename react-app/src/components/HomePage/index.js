@@ -1,16 +1,15 @@
 import "./HomePage.css";
 
 import React from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useState } from "react";
+import { useSelector } from "react-redux";
 import CreatePost from '../CreatePost';
 import ShowPosts from "../ShowPosts";
 
 function HomePage () {
 
   let userState = useSelector((state) => state.session);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const dispatch = useDispatch();
+  // const [isLoaded, setIsLoaded] = useState(false);
 
 
 
