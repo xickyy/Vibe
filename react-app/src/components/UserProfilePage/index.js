@@ -33,7 +33,7 @@ const UserProfilePage = () => {
   }
 
   return (
-    <div>
+    <div style={{backgroundImage: 'url(https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg)'}}>
       user Page-
       {currentUser.username}
       {editUser()}
