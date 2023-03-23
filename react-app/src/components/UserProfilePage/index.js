@@ -33,10 +33,12 @@ const UserProfilePage = () => {
   }
 
   return (
-    <div style={{backgroundImage: 'url(https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg)'}}>
+    <div style={{position: 'absolute', marginTop:'-56px', zIndex:'-100', height:'99%', width:'99%', backgroundImage: `url(${currentUser.profileBackgroundImgUrl})`}}>
+      <div style={{marginTop:'70px'}}>
       user Page-
       {currentUser.username}
       {editUser()}
+      </div>
     </div>
   )
 }

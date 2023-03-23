@@ -10,8 +10,8 @@
 }
 
 .search input {
-  background-color: rgb(255, 255, 255);
-  border-color: rgb(0, 0, 0);
+  background-color: rgb(153, 0, 255);
+  border-color: rgb(0, 255, 247);
   border-radius: 20px;
   border-right: 0px;
   border-top-right-radius: 0px;
@@ -27,11 +27,11 @@
   0 0 7px #fff,
       0 0 10px #fff,
       0 0 21px #fff,
-      0 0 20px #0fa,
-      0 0 40px #0fa,
-      0 0 40px #0fa,
-      0 0 50px #0fa,
-      0 0 75px #0fa;
+      0 0 20px rgb(0, 255, 247),
+      0 0 40px rgb(0, 255, 247),
+      0 0 40px rgb(0, 255, 247),
+      0 0 50px rgb(0, 255, 247),
+      0 0 75px rgb(0, 255, 247);
 }
 
 .searchIcon {
@@ -40,10 +40,11 @@
   border-radius: 20px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  border-color: rgb(0, 255, 247);
   border-left: 0px;
   height: 40px;
   width: 50px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(153, 0, 255);
   display: grid;
   place-items: center;
 }
