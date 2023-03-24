@@ -3,6 +3,8 @@
   background-color: rgb(78, 78, 230);
   margin-left: -98px;
   margin-top: 50px;
+  color: aqua;
+  list-style: none;
 }
 
 .hidden {

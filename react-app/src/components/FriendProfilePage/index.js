@@ -69,10 +69,12 @@ const FriendProfilePage = () => {
 
   return (
     isLoaded &&
-    <>
-      <h1>friend-{profile.firstName}</h1>
-      {friendButton()}
-    </>
+    <div style={{ position: 'absolute', marginTop: '-56px', zIndex: '-100', height: '99%', width: '99%', backgroundImage: `url(${profile.profileBackgroundImgUrl})` }}>
+      <div style={{ marginTop: '70px' }}>
+        <h1>friend-{profile.firstName}</h1>
+        {friendButton()}
+      </div>
+    </div>
   )
 
 }

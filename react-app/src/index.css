@@ -7,16 +7,19 @@ body {
 input {
 background-color: black;
 color: aqua;
+border-color: blueviolet;
 }
 
 textarea {
   background-color: black;
   color: aqua;
+  border-color: blueviolet;
 }
 
 select {
   background-color: black;
   color: aqua;
+  border-color: blueviolet;
 }
 
 button {
@@ -24,6 +27,7 @@ button {
   background-color: blueviolet;
   border-color: aqua;
   border-radius: 20px;
+  font-family:cursive
 }
 
 button:hover {
@@ -31,9 +35,17 @@ button:hover {
     0 0 7px #fff,
         0 0 10px #fff,
         0 0 21px #fff,
-        0 0 20px rgb(0, 255, 247),
-        0 0 40px rgb(0, 255, 247),
-        0 0 40px rgb(0, 255, 247),
-        0 0 50px rgb(0, 255, 247),
-        0 0 75px rgb(0, 255, 247);
+        0 0 20px aqua,
+        0 0 40px aqua,
+        0 0 40px aqua,
+        0 0 50px aqua,
+        0 0 75px aqua;
+}
+
+::placeholder {
+  color: aqua;
+}
+
+div#modal-content {
+  background-color: rgb(0, 0, 0);
 }
