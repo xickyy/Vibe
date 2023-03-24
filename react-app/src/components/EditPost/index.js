@@ -13,7 +13,7 @@ function EditPost({ post }) {
   const [body, setBody] = useState(post.body);
   const [mood, setMood] = useState(post.mood);
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();;
+  const { closeModal } = useModal();
 
   let userState = useSelector((state) => state.session);
   let userId = userState.user.id;
@@ -23,7 +23,7 @@ function EditPost({ post }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      id: post.id,  
+      id: post.id,
       body,
       mood
     }
