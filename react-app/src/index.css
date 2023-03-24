@@ -23,14 +23,32 @@ select {
 }
 
 button {
-  color: rgb(255, 0, 242);
+  color: deeppink;
   background-color: blueviolet;
   border-color: aqua;
   border-radius: 20px;
-  font-family:cursive
+  font-family:cursive;
+
 }
 
 button:hover {
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px blueviolet, 0 0 40px blueviolet, 0 0 50px blueviolet, 0 0 60px blueviolet, 0 0 70px deeppink;
+  }
+  to {
+    box-shadow: 0 0 20px #fff, 0 0 30px aqua, 0 0 40px aqua, 0 0 50px aqua, 0 0 60px blue, 0 0 70px blue, 0 0 80px blue;
+  }
+}
+
+/* button:hover {
     box-shadow:
     0 0 7px #fff,
         0 0 10px #fff,
@@ -40,7 +58,7 @@ button:hover {
         0 0 40px aqua,
         0 0 50px aqua,
         0 0 75px aqua;
-}
+} */
 
 ::placeholder {
   color: aqua;

@@ -62,10 +62,12 @@ const ShowPosts = () => {
       {postsSorted &&
         postsSorted.map((post) => (
           <div key={post.id} className='post-container'>
-            <p>{post.user.username}</p>
-            <img className="post-profile-pic" src={post.user.profilePicUrl} alt=''></img>
-            <h2>{post.body}</h2>
-            <p>Mood: {post.mood}</p>
+            <div className="all-post-name-img-container">
+              <img className="post-profile-pic" src={post.user.profilePicUrl} alt=''></img>
+              <p className="all-posts-name">{post.user.username}</p>
+            </div>
+            <p className="all-posts-body">{post.body}</p>
+            <p className="all-posts-mood">Mood: {post.mood}</p>
             {userEdit(post)}
             {userDelete(post.id, post.userId)}
           </div>

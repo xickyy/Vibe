@@ -40,14 +40,14 @@ function CreatePost() {
 
   return (
     <div className="create-post-container">
-      <h3>Create a Post!</h3>
-      <form onSubmit={handleSubmit}>
+      <h3 className="create-post-header">Create a Post!</h3>
+      <form className="create-post-body-mood-container" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
+        <label className="create-post-body">
           Body:
           <textarea
             type="text"
@@ -56,7 +56,7 @@ function CreatePost() {
             onChange={(e) => setBody(e.target.value)}
           />
         </label>
-        <label>
+        <label className="create-post-mood">
           Mood:
           <select value={mood} onChange={e => setMood(e.target.value)}>
             <option disabled>{'How are you feeling?'}</option>

@@ -10,8 +10,8 @@
 }
 
 .search input {
-  background-color: rgb(153, 0, 255);
-  border-color: rgb(0, 255, 247);
+  background-color:blueviolet;
+  border-color: aqua;
   border-radius: 20px;
   border-right: 0px;
   border-top-right-radius: 0px;
@@ -22,17 +22,26 @@
   width: 100%;
 }
 
+
+
 .search:hover {
-  box-shadow:
-  0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 20px aqua,
-      0 0 40px aqua,
-      0 0 40px aqua,
-      0 0 50px aqua,
-      0 0 75px aqua;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glows 1s ease-in-out infinite alternate;
+  -moz-animation: glows 1s ease-in-out infinite alternate;
+  animation: glows 1s ease-in-out infinite alternate;
 }
+
+@keyframes glows {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    box-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+
 
 .searchIcon {
   border: 2px;
@@ -40,11 +49,11 @@
   border-radius: 20px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-color: rgb(0, 255, 247);
+  border-color: aqua;
   border-left: 0px;
   height: 40px;
   width: 50px;
-  background-color: rgb(153, 0, 255);
+  background-color:blueviolet;
   display: grid;
   place-items: center;
 }

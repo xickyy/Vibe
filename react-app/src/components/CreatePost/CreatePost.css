@@ -1,4 +1,24 @@
 .create-post-container {
   border: 1px;
   border-style: solid;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-post-header {
+  color: deeppink;
+  margin-left: 15px;
+}
+
+.create-post-body {
+  align-content: center;
+}
+
+.create-post-mood {
+margin-left: 15px;
+}
+
+.create-post-body-mood-container {
+  display: flex;
+  align-items: center;
 }
