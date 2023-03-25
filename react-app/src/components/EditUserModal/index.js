@@ -6,7 +6,7 @@ import { deleteUserThunk } from "../../store/session";
 import { useHistory } from "react-router-dom";
 import "./EditUserModal.css";
 
-function EditUserModal({user}) {
+function EditUserModal({ user }) {
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -42,7 +42,7 @@ function EditUserModal({user}) {
 	const { closeModal } = useModal();
 
 	let userState = useSelector((state) => state.session);
-  let userId = userState.user.id;
+	let userId = userState.user.id;
 
 
 	const handleSubmit = async (e) => {
@@ -77,146 +77,183 @@ function EditUserModal({user}) {
 	let zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 	let realtionships = ['Rather not say', 'Single', 'Situationship', 'Available', 'In a Relationship', 'Married', "Don't talk to me", 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
 	return (
-		<>
-			<h1>Edit Profile</h1>
-			<button onClick={handleDelete}>Delete Profile</button>
-			<form onSubmit={handleSubmit}>
+		<div className="edit-user-modal-container">
+			<div className="edit-user-info">
+				<h1>Edit Profile</h1>
+				<p className="edit-user-info-text">Blue checkmarks indicate weather or not you wish to display that information on your profile.</p>
+			</div>
+			<form className="edit-user-details-container" onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
+				<label className="edit-user-labels">
 					Email
 					<input
+						className="edit-user-input-boxes"
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					First Name
-					<input type='checkbox' checked={firstNameB} onChange={() => setFirstNameB(handleBoolean(firstNameB))}></input>
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-					/>
-				</label>
-				<label>
-					Last Name
-					<input type='checkbox' checked={lastNameB} onChange={() => setLastNameB(handleBoolean(lastNameB))}></input>
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-					/>
-				</label>
-				<label>
+				<label className="edit-user-labels">
 					Username
 					<input
+						className="edit-user-input-boxes"
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
+				<label className="edit-user-labels">
 					Profile Picture Url
 					<input
+						className="edit-user-input-boxes"
 						type="text"
 						value={profilePic}
 						onChange={(e) => setProfilePic(e.target.value)}
 					/>
 				</label>
-				<label>
+				<label className="edit-user-labels">
+					First Name
+					<div>
+						<input type='checkbox' checked={firstNameB} onChange={() => setFirstNameB(handleBoolean(firstNameB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
+						/>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Last Name
+					<div>
+						<input type='checkbox' checked={lastNameB} onChange={() => setLastNameB(handleBoolean(lastNameB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
+						/>
+					</div>
+				</label>
+
+				<label className="edit-user-labels">
 					Bio
-					<input type='checkbox' checked={bioB} onChange={() => setBioB(handleBoolean(bioB))}></input>
-					<textarea
-						type="text"
-						value={bio}
-						onChange={(e) => setBio(e.target.value)}
-					/>
+					<div>
+						<input type='checkbox' checked={bioB} onChange={() => setBioB(handleBoolean(bioB))}></input>
+						<textarea
+							className="edit-user-input-text-area"
+							type="text"
+							value={bio}
+							onChange={(e) => setBio(e.target.value)}
+						/>
+					</div>
 				</label>
-				<label>
-					Birth date
-					<input type='checkbox' checked={birthdayB} onChange={() => setBirthdayB(handleBoolean(birthdayB))}></input>
-					<input
-						type="date"
-						value={birthday}
-						onChange={(e) => setBirthday(e.target.value)}
-					/>
-				</label>
-				<label>
-					Zodiac Sign
-					<input type='checkbox' checked={zodiacB} onChange={() => setZodiacB(handleBoolean(zodiacB))}></input>
-					<select value={zodiac} onChange={e => setZodiac(e.target.value)}>
-          <option disabled>{'Please select a zodiac'}</option>
-          {zodiacs.map(zodiac => (
-            <option
-              key={zodiac}
-              value={zodiac}
-            >
-              {zodiac}
-            </option>
-          ))}
-        </select>
-				</label>
-				<label>
-					Height
-					<input type='checkbox' checked={heightB} onChange={() => setHeightB(handleBoolean(heightB))}></input>
-					<input
-						type="text"
-						value={height}
-						onChange={(e) => setHeight(e.target.value)}
-					/>
-				</label>
-				<label>
-					Motto
-					<input type='checkbox' checked={mottoB} onChange={() => setMottoB(handleBoolean(mottoB))}></input>
-					<input
-						type="text"
-						value={motto}
-						onChange={(e) => setMotto(e.target.value)}
-					/>
-				</label>
-				<label>
-					Card Img Url
-					<input type='checkbox' checked={cardImgB} onChange={() => setCardImgB(handleBoolean(cardImgB))}></input>
-					<input
-						type="text"
-						value={cardImg}
-						onChange={(e) => setCardImg(e.target.value)}
-					/>
-				</label>
-				<label>
+				<label className="edit-user-labels">
 					Relationship Status
-					<input type='checkbox' checked={relStatusB} onChange={() => setRelStatusB(handleBoolean(relStatusB))}></input>
-					<select value={relStatus} onChange={e => setRelStatus(e.target.value)}>
-          <option disabled>{'Please select a status'}</option>
-          {realtionships.map(relation => (
-            <option
-              key={relation}
-              value={relation}
-            >
-              {relation}
-            </option>
-          ))}
-        </select>
+					<div>
+						<input type='checkbox' checked={relStatusB} onChange={() => setRelStatusB(handleBoolean(relStatusB))}></input>
+						<select className="edit-user-input-select" value={relStatus} onChange={e => setRelStatus(e.target.value)}>
+							<option disabled>{'Please select a status'}</option>
+							{realtionships.map(relation => (
+								<option
+									key={relation}
+									value={relation}
+								>
+									{relation}
+								</option>
+							))}
+						</select>
+					</div>
 				</label>
-				<label>
-					Profile background Img
-					<input type='checkbox' checked={backgroundB} onChange={() => setBackgroundB(handleBoolean(backgroundB))}></input>
-					<input
-						type="text"
-						value={background}
-						onChange={(e) => setBackground(e.target.value)}
-					/>
+				<label className="edit-user-labels">
+					Birth date
+					<div>
+						<input type='checkbox' checked={birthdayB} onChange={() => setBirthdayB(handleBoolean(birthdayB))}></input>
+						<input
+							className="edit-user-input-date"
+							type="date"
+							value={birthday}
+							onChange={(e) => setBirthday(e.target.value)}
+						/>
+					</div>
 				</label>
-				<button type="submit">Save Changes</button>
+				<label className="edit-user-labels">
+					Zodiac Sign
+					<div>
+						<input type='checkbox' checked={zodiacB} onChange={() => setZodiacB(handleBoolean(zodiacB))}></input>
+						<select className="edit-user-input-select" value={zodiac} onChange={e => setZodiac(e.target.value)}>
+							<option disabled>{'Please select a zodiac'}</option>
+							{zodiacs.map(zodiac => (
+								<option
+									key={zodiac}
+									value={zodiac}
+								>
+									{zodiac}
+								</option>
+							))}
+						</select>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Height
+					<div>
+						<input type='checkbox' checked={heightB} onChange={() => setHeightB(handleBoolean(heightB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={height}
+							onChange={(e) => setHeight(e.target.value)}
+						/>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Motto
+					<div>
+						<input type='checkbox' checked={mottoB} onChange={() => setMottoB(handleBoolean(mottoB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={motto}
+							onChange={(e) => setMotto(e.target.value)}
+						/>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Card Img Url
+					<div>
+						<input type='checkbox' checked={cardImgB} onChange={() => setCardImgB(handleBoolean(cardImgB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={cardImg}
+							onChange={(e) => setCardImg(e.target.value)}
+						/>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Background Img
+					<div>
+						<input type='checkbox' checked={backgroundB} onChange={() => setBackgroundB(handleBoolean(backgroundB))}></input>
+						<input
+							className="edit-user-input-boxes"
+							type="text"
+							value={background}
+							onChange={(e) => setBackground(e.target.value)}
+						/>
+					</div>
+				</label>
+				<div className="edit-user-save-delete-buttons">
+					<button onClick={handleDelete}>Delete Profile</button>
+					<button type="submit">Save Changes</button>
+				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 
