@@ -48,7 +48,7 @@ def edit_user(user_id):
 
     if form.validate_on_submit():
         user = User.query.get(user_id)
-        booleans = Boolean.get(user_id)
+        booleans = Boolean.query.get(user_id)
 
         if user is None:
             return {'errors': ['Product not found']}, 404

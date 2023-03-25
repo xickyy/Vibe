@@ -25,7 +25,17 @@ function EditUserModal({user}) {
 	const [cardImg, setCardImg] = useState(user.cardImgUrl || '');
 	const [background, setBackground] = useState(user.profileBackgroundImgUrl || '')
 
-	const [firstNameB, setFirstNameB] = useState(false)
+	const [firstNameB, setFirstNameB] = useState(user.booleans.firstNameB || false)
+	const [lastNameB, setLastNameB] = useState(user.booleans.lastNameB || false)
+	const [bioB, setBioB] = useState(user.booleans.bioB || false)
+	const [zodiacB, setZodiacB] = useState(user.booleans.zodiacB || false)
+	const [heightB, setHeightB] = useState(user.booleans.heightB || false)
+	const [relStatusB, setRelStatusB] = useState(user.booleans.relationshipB || false)
+	const [birthdayB, setBirthdayB] = useState(user.booleans.birthdayB || false)
+	const [mottoB, setMottoB] = useState(user.booleans.mottoB || false)
+	const [cardImgB, setCardImgB] = useState(user.booleans.cardB || false)
+	const [backgroundB, setBackgroundB] = useState(user.booleans.backgroundB || false)
+
 	// const [password, setPassword] = useState("");
 	// const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -38,7 +48,7 @@ function EditUserModal({user}) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (userId) {
-			const data = await dispatch(editUser(userId, username, firstName, lastName, email, zodiac, profilePic, bio, height, relStatus, birthday, motto, cardImg, background));
+			const data = await dispatch(editUser(userId, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -50,6 +60,10 @@ function EditUserModal({user}) {
 			]);
 		}
 	};
+
+	const handleBoolean = (bool) => {
+		return !bool
+	}
 
 	const handleDelete = () => {
 		const confirm = window.confirm(
@@ -83,7 +97,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					First Name
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={firstNameB} onChange={() => setFirstNameB(handleBoolean(firstNameB))}></input>
 					<input
 						type="text"
 						value={firstName}
@@ -92,7 +106,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Last Name
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={lastNameB} onChange={() => setLastNameB(handleBoolean(lastNameB))}></input>
 					<input
 						type="text"
 						value={lastName}
@@ -118,7 +132,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Bio
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={bioB} onChange={() => setBioB(handleBoolean(bioB))}></input>
 					<textarea
 						type="text"
 						value={bio}
@@ -127,7 +141,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Birth date
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={birthdayB} onChange={() => setBirthdayB(handleBoolean(birthdayB))}></input>
 					<input
 						type="date"
 						value={birthday}
@@ -136,7 +150,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Zodiac Sign
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={zodiacB} onChange={() => setZodiacB(handleBoolean(zodiacB))}></input>
 					<select value={zodiac} onChange={e => setZodiac(e.target.value)}>
           <option disabled>{'Please select a zodiac'}</option>
           {zodiacs.map(zodiac => (
@@ -151,7 +165,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Height
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={heightB} onChange={() => setHeightB(handleBoolean(heightB))}></input>
 					<input
 						type="text"
 						value={height}
@@ -160,7 +174,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Motto
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={mottoB} onChange={() => setMottoB(handleBoolean(mottoB))}></input>
 					<input
 						type="text"
 						value={motto}
@@ -169,7 +183,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Card Img Url
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={cardImgB} onChange={() => setCardImgB(handleBoolean(cardImgB))}></input>
 					<input
 						type="text"
 						value={cardImg}
@@ -178,7 +192,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Relationship Status
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={relStatusB} onChange={() => setRelStatusB(handleBoolean(relStatusB))}></input>
 					<select value={relStatus} onChange={e => setRelStatus(e.target.value)}>
           <option disabled>{'Please select a status'}</option>
           {realtionships.map(relation => (
@@ -193,7 +207,7 @@ function EditUserModal({user}) {
 				</label>
 				<label>
 					Profile background Img
-					<input type='checkbox'></input>
+					<input type='checkbox' checked={backgroundB} onChange={() => setBackgroundB(handleBoolean(backgroundB))}></input>
 					<input
 						type="text"
 						value={background}

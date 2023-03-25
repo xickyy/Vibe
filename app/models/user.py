@@ -57,5 +57,5 @@ class User(db.Model, UserMixin):
             'profileBackgroundImgUrl': self.profile_background_img_url,
             'email': self.email,
             'friends': [friend.to_dict() for friend in self.friends],
-            'booleans:': self.booleans.to_dict()
+            'booleans': self.booleans.to_dict()
         }
