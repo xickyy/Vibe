@@ -12,6 +12,12 @@
 
 .create-post-body {
   align-content: center;
+  margin-top: 5px;
+}
+
+.create-post-body textarea {
+  height: 100%;
+  min-width: 100%;
 }
 
 .create-post-mood {

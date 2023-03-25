@@ -25,8 +25,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    friends = db.relationship("Friend", foreign_keys='Friend.friend_id', back_populates="user")
+    friends = db.relationship("Friend", foreign_keys='Friend.user_id', back_populates="user")
     posts = db.relationship("Post", back_populates="user")
+    booleans = db.relationship("Boolean", back_populates="user", uselist=False)
 
     @property
     def password(self):
@@ -54,5 +55,7 @@ class User(db.Model, UserMixin):
             'motto': self.motto,
             'cardImgUrl': self.card_img_url,
             'profileBackgroundImgUrl': self.profile_background_img_url,
-            'email': self.email
+            'email': self.email,
+            'friends': [friend.to_dict() for friend in self.friends],
+            'booleans:': self.booleans.to_dict()
         }

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, db
+from app.models import User, Boolean, db
 from app.forms import EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -48,6 +48,7 @@ def edit_user(user_id):
 
     if form.validate_on_submit():
         user = User.query.get(user_id)
+        booleans = Boolean.get(user_id)
 
         if user is None:
             return {'errors': ['Product not found']}, 404
@@ -66,8 +67,19 @@ def edit_user(user_id):
         user.profile_background_img_url = form.profile_background_img_url.data
         user.email = form.email.data
 
+        booleans.first_name_b = form.first_name_b.data
+        booleans.last_name_b = form.last_name_b.data
+        booleans.bio_b = form.bio_b.data
+        booleans.birthday_b = form.birthday_b.data
+        booleans.zodiac_b = form.zodiac_b.data
+        booleans.height_b = form.height_b.data
+        booleans.motto_b = form.height_b.data
+        booleans.card_b = form.card_b.data
+        booleans.relationship_b = form.relationship_b.data
+        booleans.background_b = form.background_b.data
+
         db.session.commit()
-        return user.to_dict()
+        return user.to_dict(), booleans.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 

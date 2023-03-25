@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, DateField
+from wtforms import StringField, SelectField, DateField, BooleanField
 from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import User
+from app.models import User, Boolean
 from flask_login import current_user
 
 
@@ -37,3 +37,14 @@ class EditUserForm(FlaskForm):
     profile_background_img_url = StringField('Profile Background Image Url')
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password')
+
+    first_name_b = BooleanField(False)
+    last_name_b = BooleanField(False)
+    bio_b = BooleanField(False)
+    birthday_b = BooleanField(False)
+    zodiac_b = BooleanField(False)
+    height_b = BooleanField(False)
+    motto_b = BooleanField(False)
+    card_b = BooleanField(False)
+    relationship_b = BooleanField(False)
+    background_b = BooleanField(False)

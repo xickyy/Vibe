@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .friends import seed_friends, undo_friends
 from .posts import seed_posts, undo_posts
+from .booleans import seed_booleans, undo_booleans
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,9 +22,11 @@ def seed():
         undo_users()
         undo_friends()
         undo_posts()
+        undo_booleans()
     seed_users()
     seed_friends()
     seed_posts()
+    seed_booleans()
     # Add other seed functions here
 
 
@@ -33,4 +36,5 @@ def undo():
     undo_users()
     undo_friends()
     undo_posts()
+    undo_booleans()
     # Add other undo functions here
