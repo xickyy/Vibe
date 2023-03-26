@@ -2,6 +2,7 @@ const CREATE_POST = 'posts/CREATE_POST';
 const GET_POSTS = 'posts/GET_POSTS';
 const DELETE_POST = 'posts/DELETE_POST';
 const EDIT_POST = 'posts/EDIT_POST';
+const CLEAR_POSTS = 'posts/CLEAR_POSTS';
 
 
 const createPost = (post) => ({
@@ -22,6 +23,10 @@ const deletePost = (postId) => ({
 const editPost = (post) => ({
     type: EDIT_POST,
     post,
+});
+
+const clearPosts = () => ({
+  type: CLEAR_POSTS
 });
 
 
@@ -74,6 +79,10 @@ export const editPostThunk = (post) => async (dispatch) => {
   }
 };
 
+export const clearPostsThunk = () => async (dispatch) => {
+  dispatch(clearPosts())
+}
+
 
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
@@ -91,7 +100,10 @@ export default function reducer(state = initialState, action) {
       return newState
       case EDIT_POST:
         newState[action.post.id] = action.post;
-        return newState;    
+        return newState;
+      case CLEAR_POSTS:
+        newState = {}
+        return newState;
     default:
       return state;
   }

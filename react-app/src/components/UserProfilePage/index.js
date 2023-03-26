@@ -2,8 +2,6 @@ import "./UserProfilePage.css";
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import OpenModalButton from "../OpenModalButton";
-import EditUserModal from '../EditUserModal'
 
 const UserProfilePage = () => {
   const [currentUser, setUser] = useState([]);
@@ -23,21 +21,12 @@ const UserProfilePage = () => {
     fetchData();
   }, [userId]);
 
-  const editUser = () => {
-    return (
-      <OpenModalButton
-        buttonText="Edit Your Profile"
-        modalComponent={<EditUserModal user={userState.user} />}
-      />
-    );
-  }
 
   return (
     <div style={{position: 'absolute', marginTop:'-56px', zIndex:'-100', height:'99%', width:'99%', backgroundImage: `url(${currentUser.profileBackgroundImgUrl})`}}>
       <div style={{marginTop:'70px'}}>
       user Page-
       {currentUser.username}
-      {editUser()}
       </div>
     </div>
   )

@@ -1,10 +1,14 @@
 .profile-dropdown {
   position: absolute;
-  background-color: rgb(78, 78, 230);
-  margin-left: -98px;
+  background-color: rgb(34, 15, 65);
+  margin-left: -79px;
   margin-top: 50px;
   color: aqua;
   list-style: none;
+  border-radius: 10px;
+  border: 2px;
+  border-color: aqua;
+  border-style: dashed;
 }
 
 .hidden {
@@ -18,4 +22,20 @@
 
  .prof-button {
   display: flex;
+}
+
+.prof-button-li {
+  display: flex;
+  flex-direction: column;
+  margin-left: -31px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.logged-out-buttons {
+  margin-left: -30px;
+  margin-right: 9px;
+  display: flex;
+  flex-direction: column;
 }

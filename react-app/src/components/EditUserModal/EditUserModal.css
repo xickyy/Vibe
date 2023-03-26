@@ -39,6 +39,7 @@
 .edit-user-save-delete-buttons {
   display: flex;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .edit-user-info {
