@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: 6a8ec1e6b22a
-Revises:
-Create Date: 2023-03-25 22:08:31.150318
+Revision ID: 76953a1f2575
+Revises: 
+Create Date: 2023-03-26 14:42:47.793719
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = '6a8ec1e6b22a'
+revision = '76953a1f2575'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,7 +29,7 @@ def upgrade():
     sa.Column('height', sa.String(length=20), nullable=True),
     sa.Column('relationship_status', sa.String(), nullable=True),
     sa.Column('birthday', sa.String(length=20), nullable=True),
-    sa.Column('motto', sa.String(length=255), nullable=True),
+    sa.Column('motto', sa.String(length=50), nullable=True),
     sa.Column('card_img_url', sa.String(), nullable=True),
     sa.Column('profile_background_img_url', sa.String(), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=False),
@@ -42,9 +38,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('booleans',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name_b', sa.Boolean(), nullable=True),
@@ -61,9 +54,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE booleans SET SCHEMA {SCHEMA};")
-
     op.create_table('friends',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('friend_rank', sa.Integer(), nullable=True),
@@ -73,9 +63,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.String(length=255), nullable=False),
@@ -85,9 +72,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 

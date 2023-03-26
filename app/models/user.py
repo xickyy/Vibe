@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     height = db.Column(db.String(20))
     relationship_status = db.Column(db.String)
     birthday = db.Column(db.String(20))
-    motto = db.Column(db.String(255))
+    motto = db.Column(db.String(50))
     card_img_url = db.Column(db.String)
     profile_background_img_url = db.Column(db.String)
     email = db.Column(db.String(255), nullable=False, unique=True)
