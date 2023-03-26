@@ -54,3 +54,10 @@
   margin-left: 40px;
   font-size: 15px;
 }
+
+.edit-user-title {
+  text-align: center;
+  animation: flicker 1.5s infinite alternate;
+  color: #fff;
+}
+

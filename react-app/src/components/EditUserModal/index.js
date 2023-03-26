@@ -79,7 +79,7 @@ function EditUserModal({ user }) {
 	return (
 		<div className="edit-user-modal-container">
 			<div className="edit-user-info">
-				<h1>Edit Profile</h1>
+				<h2 className="edit-user-title">Edit Profile</h2>
 				<p className="edit-user-info-text">Blue checkmarks indicate weather or not you wish to display that information on your profile.</p>
 			</div>
 			<form className="edit-user-details-container" onSubmit={handleSubmit}>
