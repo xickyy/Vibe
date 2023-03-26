@@ -80,6 +80,7 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (username, email, password) => async (dispatch) => {
+	console.log('DATAA',username, email, password)
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -89,6 +90,17 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			first_name: '',
+			last_name: '',
+			profile_pic_url: '',
+			bio: '',
+			zodiac: 'Rather not say',
+			height: '',
+			relationship_status: 'Rather not say',
+			birthday: '',
+			motto: '',
+			card_img_url: '',
+			profile_background_img_url: ''
 		}),
 	});
 

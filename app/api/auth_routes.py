@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Boolean, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -78,7 +78,23 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password']
         )
+
+        booleans = Boolean(
+            first_name_b = False,
+            last_name_b = False,
+            bio_b = False,
+            birthday_b = False,
+            zodiac_b = False,
+            height_b = False,
+            motto_b = False,
+            card_b = False,
+            relationship_b = False,
+            background_b = False,
+            user_id = 4
+        )
+
         db.session.add(user)
+        db.session.add(booleans)
         db.session.commit()
         login_user(user)
         return user.to_dict()

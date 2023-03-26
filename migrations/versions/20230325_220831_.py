@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: 4b5412f3296f
-Revises:
-Create Date: 2023-03-25 11:01:45.704972
+Revision ID: 6a8ec1e6b22a
+Revises: 
+Create Date: 2023-03-25 22:08:31.150318
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = '4b5412f3296f'
+revision = '6a8ec1e6b22a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,8 +21,8 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
-    sa.Column('first_name', sa.String(length=40), nullable=False),
-    sa.Column('last_name', sa.String(length=40), nullable=False),
+    sa.Column('first_name', sa.String(length=40), nullable=True),
+    sa.Column('last_name', sa.String(length=40), nullable=True),
     sa.Column('profile_pic_url', sa.String(), nullable=True),
     sa.Column('bio', sa.String(length=1000), nullable=True),
     sa.Column('zodiac', sa.String(length=40), nullable=True),
@@ -42,9 +38,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('booleans',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name_b', sa.Boolean(), nullable=True),
@@ -61,9 +54,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE booleans SET SCHEMA {SCHEMA};")
-
     op.create_table('friends',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('friend_rank', sa.Integer(), nullable=True),
@@ -73,9 +63,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.String(length=255), nullable=False),
@@ -85,9 +72,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 

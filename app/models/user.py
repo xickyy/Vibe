@@ -11,8 +11,8 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    first_name = db.Column(db.String(40), nullable=False)
-    last_name = db.Column(db.String(40), nullable=False)
+    first_name = db.Column(db.String(40))
+    last_name = db.Column(db.String(40))
     profile_pic_url = db.Column(db.String)
     bio = db.Column(db.String(1000))
     zodiac = db.Column(db.String(40))
