@@ -1,13 +1,15 @@
 .edit-user-modal-container {
   display: flex;
   flex-direction: column;
-  margin: 50px;
-  margin-top: 15px;
+  margin: 15px;
+  border: 2px;
+  border-style: dotted;
 }
 
 .edit-user-details-container {
   display: flex;
   flex-direction: column;
+  margin: 20px;
 }
 
 .edit-user-labels {
@@ -17,21 +19,21 @@
 }
 
 .edit-user-input-boxes {
-  width: 200px;
+  width: 167px;
   margin-bottom: 5px;
 }
 
 .edit-user-input-select {
-  width: 208px;
+  width: 175px;
 }
 
 .edit-user-input-text-area {
-  width: 202px;
+  width: 169px;
   height: 40px;
 }
 
 .edit-user-input-date {
-  width: 203px;
+  width: 171px;
 }
 
 .edit-user-save-delete-buttons {
@@ -42,6 +44,8 @@
 .edit-user-info {
   display: flex;
   flex-direction: row;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .edit-user-info-text {
