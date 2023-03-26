@@ -7,8 +7,6 @@ import "./SignupForm.css";
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,7 +16,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, firstName, lastName, email, password));
+			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -32,15 +30,15 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+		<div className="sign-up-modal-container">
+			<h1 className="sign-up-text">Sign Up</h1>
+			<form className="sign-up-modal-labels" onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
+				<label className="sign-up-label">
 					Email
 					<input
 						type="text"
@@ -49,23 +47,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-					/>
-				</label>
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-					/>
-				</label>
-				<label>
+				<label className="sign-up-label">
 					Username
 					<input
 						type="text"
@@ -74,7 +56,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="sign-up-label">
 					Password
 					<input
 						type="password"
@@ -83,7 +65,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="sign-up-label">
 					Confirm Password
 					<input
 						type="password"
@@ -92,9 +74,9 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button className="sign-up-button" type="submit">Lets Go!</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

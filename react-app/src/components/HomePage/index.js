@@ -24,7 +24,10 @@ function HomePage () {
     )
   } else {
     return (
-      <h3>Sign in or make an account to start making friends and sharing your thoughts!</h3>
+      <>
+      <h1 className="welcome-title">Welcome to VIBE!</h1>
+      <h3 className="welcome-message">Sign in or make an account to start making friends and sharing your thoughts!</h3>
+      </>
     )
   }
 }
