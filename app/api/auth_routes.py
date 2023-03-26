@@ -79,6 +79,9 @@ def sign_up():
             password=form.data['password']
         )
 
+        db.session.add(user)
+        db.session.commit()
+
         booleans = Boolean(
             first_name_b = False,
             last_name_b = False,
@@ -90,10 +93,9 @@ def sign_up():
             card_b = False,
             relationship_b = False,
             background_b = False,
-            user_id = 4
+            user_id = user.id
         )
 
-        db.session.add(user)
         db.session.add(booleans)
         db.session.commit()
         login_user(user)
