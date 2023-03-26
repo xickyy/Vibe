@@ -61,10 +61,6 @@ function EditUserModal({ user }) {
 		}
 	};
 
-	const handleBoolean = (bool) => {
-		return !bool
-	}
-
 	const handleDelete = () => {
 		const confirm = window.confirm(
 			`Are you sure you wish to delete you're profile? there is no reversing this action but you can always make a new account`
@@ -120,7 +116,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					First Name
 					<div>
-						<input type='checkbox' checked={firstNameB} onChange={() => setFirstNameB(handleBoolean(firstNameB))}></input>
+						<input type='checkbox' checked={firstNameB} onChange={() => setFirstNameB(!firstNameB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"
@@ -132,7 +128,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Last Name
 					<div>
-						<input type='checkbox' checked={lastNameB} onChange={() => setLastNameB(handleBoolean(lastNameB))}></input>
+						<input type='checkbox' checked={lastNameB} onChange={() => setLastNameB(!lastNameB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"
@@ -145,7 +141,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Bio
 					<div>
-						<input type='checkbox' checked={bioB} onChange={() => setBioB(handleBoolean(bioB))}></input>
+						<input type='checkbox' checked={bioB} onChange={() => setBioB(!bioB)}></input>
 						<textarea
 							className="edit-user-input-text-area"
 							type="text"
@@ -157,7 +153,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Relationship Status
 					<div>
-						<input type='checkbox' checked={relStatusB} onChange={() => setRelStatusB(handleBoolean(relStatusB))}></input>
+						<input type='checkbox' checked={relStatusB} onChange={() => setRelStatusB(!relStatusB)}></input>
 						<select className="edit-user-input-select" value={relStatus} onChange={e => setRelStatus(e.target.value)}>
 							<option disabled>{'Please select a status'}</option>
 							{realtionships.map(relation => (
@@ -174,7 +170,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Birth date
 					<div>
-						<input type='checkbox' checked={birthdayB} onChange={() => setBirthdayB(handleBoolean(birthdayB))}></input>
+						<input type='checkbox' checked={birthdayB} onChange={() => setBirthdayB(!birthdayB)}></input>
 						<input
 							className="edit-user-input-date"
 							type="date"
@@ -186,7 +182,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Zodiac Sign
 					<div>
-						<input type='checkbox' checked={zodiacB} onChange={() => setZodiacB(handleBoolean(zodiacB))}></input>
+						<input type='checkbox' checked={zodiacB} onChange={() => setZodiacB(!zodiacB)}></input>
 						<select className="edit-user-input-select" value={zodiac} onChange={e => setZodiac(e.target.value)}>
 							<option disabled>{'Please select a zodiac'}</option>
 							{zodiacs.map(zodiac => (
@@ -203,7 +199,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Height
 					<div>
-						<input type='checkbox' checked={heightB} onChange={() => setHeightB(handleBoolean(heightB))}></input>
+						<input type='checkbox' checked={heightB} onChange={() => setHeightB(!heightB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"
@@ -215,7 +211,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Motto
 					<div>
-						<input type='checkbox' checked={mottoB} onChange={() => setMottoB(handleBoolean(mottoB))}></input>
+						<input type='checkbox' checked={mottoB} onChange={() => setMottoB(!mottoB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"
@@ -227,7 +223,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Card Img Url
 					<div>
-						<input type='checkbox' checked={cardImgB} onChange={() => setCardImgB(handleBoolean(cardImgB))}></input>
+						<input type='checkbox' checked={cardImgB} onChange={() => setCardImgB(!cardImgB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"
@@ -239,7 +235,7 @@ function EditUserModal({ user }) {
 				<label className="edit-user-labels">
 					Background Img
 					<div>
-						<input type='checkbox' checked={backgroundB} onChange={() => setBackgroundB(handleBoolean(backgroundB))}></input>
+						<input type='checkbox' checked={backgroundB} onChange={() => setBackgroundB(!backgroundB)}></input>
 						<input
 							className="edit-user-input-boxes"
 							type="text"

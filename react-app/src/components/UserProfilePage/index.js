@@ -66,6 +66,10 @@ const UserProfilePage = () => {
       return (
         <div className="user-profile-motto">{currentUser.motto}</div>
       )
+    } else {
+      return (
+        <div className="user-profile-motto"></div>
+      )
     }
   }
 

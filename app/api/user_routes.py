@@ -73,7 +73,7 @@ def edit_user(user_id):
         booleans.birthday_b = form.birthday_b.data
         booleans.zodiac_b = form.zodiac_b.data
         booleans.height_b = form.height_b.data
-        booleans.motto_b = form.height_b.data
+        booleans.motto_b = form.motto_b.data
         booleans.card_b = form.card_b.data
         booleans.relationship_b = form.relationship_b.data
         booleans.background_b = form.background_b.data
