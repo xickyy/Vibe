@@ -40,37 +40,39 @@ function CreatePost() {
 
   return (
     <div className="create-post-container">
-      <h3 className="create-post-header">Create a Post!</h3>
-      <form className="create-post-body-mood-container" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label className="create-post-body">
-          Body:
-          <textarea
-            type="text"
-            value={body}
-            required
-            onChange={(e) => setBody(e.target.value)}
-          />
-        </label>
-        <label className="create-post-mood">
-          Mood:
-          <select value={mood} onChange={e => setMood(e.target.value)}>
-            <option disabled>{'How are you feeling?'}</option>
-            {moods.map(mood => (
-              <option
-                key={mood}
-                value={mood}
-              >
-                {mood}
-              </option>
+      <h3 className="create-post-header">Create Post!</h3>
+      <form className="create-post-body-mood-post-container" onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
             ))}
-          </select>
-        </label>
-        <button type="submit">Post!</button>
+          </ul>
+          <label className="create-post-body">
+            <p className="create-post-label-body">Body:</p>
+            <textarea
+              type="text"
+              value={body}
+              required
+              onChange={(e) => setBody(e.target.value)}
+            />
+          </label>
+          <div className="create-post-mood-button">
+            <label className="create-post-mood">
+              <p className="create-post-label-mood">Mood:</p>
+              <select value={mood} onChange={e => setMood(e.target.value)}>
+                <option disabled>{'How are you feeling?'}</option>
+                {moods.map(mood => (
+                  <option
+                    key={mood}
+                    value={mood}
+                  >
+                    {mood}
+                  </option>
+                ))}
+              </select>
+            </label>
+          <button className="create-post-submit-button" type="submit">Post!</button>
+        </div>
       </form>
     </div>
   );

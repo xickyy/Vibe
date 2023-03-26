@@ -8,23 +8,51 @@
 .create-post-header {
   color: deeppink;
   margin-left: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.create-post-body {
-  align-content: center;
-  margin-top: 5px;
+.create-post-body-mood-post-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: -25px;
+  margin-bottom: 5px;
+  margin-right: 7px;
+  width: 100%;
+}
+
+.create-post-mood-button {
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  margin-top: 7px;
 }
 
 .create-post-body textarea {
-  height: 100%;
-  min-width: 100%;
+  width: 100%;
+}
+
+.create-post-body {
+  display: flex;
+  flex-direction: row;
 }
 
 .create-post-mood {
-margin-left: 15px;
+  display: flex;
+  flex-direction: row;
 }
 
-.create-post-body-mood-container {
-  display: flex;
-  align-items: center;
+.create-post-label-body {
+  margin-right: 15px;
+}
+
+.create-post-label-mood {
+  margin-right: 12px;
+  margin-top: 0px;
+}
+
+.create-post-submit-button {
+  margin-left: 10px;
+  width: 100%;
 }
