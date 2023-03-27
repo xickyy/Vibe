@@ -121,6 +121,19 @@ const UserProfilePage = () => {
     }
   }
 
+  const ifBioCss = () => {
+    if ((isLoaded && (currentUser.bio !== '')) && (currentUser.booleans.bioB)) {
+      return "user-bio-container"
+    }
+  }
+
+  const ifDetailsCss = () => {
+    if (isLoaded && (currentUser.booleans.zodiacB || currentUser.booleans.heightB || currentUser.booleans.relationshipB || currentUser.booleans.birthdayB)) {
+      return "user-profile-details"
+    }
+  }
+
+
 
   return (
     <div style={ifBackground()}>
@@ -137,13 +150,13 @@ const UserProfilePage = () => {
           </div>
         </div>
         <div className="user-profile-bio-and-details">
-          <div className="user-profile-details">
+          <div className={ifDetailsCss()}>
             {ifRelationship()}
             {ifBirthday()}
             {ifZodiac()}
             {ifHeight()}
           </div>
-          <div className="user-profile-container">
+          <div className={ifBioCss()}>
             {ifBio()}
           </div>
         </div>
