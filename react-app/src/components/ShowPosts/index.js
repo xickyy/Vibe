@@ -1,6 +1,7 @@
 import "./ShowPosts.css";
 
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { allPostsThunk, deletePostThunk } from "../../store/posts";
 import OpenModalButton from "../OpenModalButton";
@@ -63,7 +64,9 @@ const ShowPosts = () => {
         postsSorted.map((post) => (
           <div key={post.id} className='post-container'>
             <div className="all-post-name-img-container">
+              <Link to={`/users/${post.user.id}`}>
               <img className="post-profile-pic" src={post.user.profilePicUrl} alt=''></img>
+              </Link>
               <p className="all-posts-name">{post.user.username}</p>
             </div>
             <p className="all-posts-body">{post.body}</p>
