@@ -75,7 +75,7 @@ function EditUserModal({ user }) {
 
 	let zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 	let realtionships = ['Rather not say', 'Single', 'Situationship', 'Available', 'In a Relationship', 'Married', "Don't talk to me", 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
-	const colors = ['blueviolet', 'aqua', 'forestgreen', 'black', 'white', 'chartreuse', 'darkmagenta', 'chrimson', 'deeppink', 'gold', 'orange', 'lightgrey']
+	const colors = ['blueviolet', 'aqua', 'forestgreen', 'black', 'white', 'chartreuse', 'darkmagenta', 'crimson', 'deeppink', 'gold', 'orange', 'lightgrey']
 
 	return (
 		<div className="edit-user-modal-container">

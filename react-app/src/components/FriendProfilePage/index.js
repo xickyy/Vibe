@@ -80,16 +80,26 @@ const FriendProfilePage = () => {
         zIndex: '-100',
         height: '100%',
         width: '100%',
-        backgroundImage: `url(${profile.profileBackgroundImgUrl})`
+        backgroundImage: `url(${profile.profileBackgroundImgUrl})`,
+        borderColor: `${profile.trimColor}`,
+        color: `${profile.textColor}`
       }
     }
   }
 
   const ifNoBackground = () => {
     if (((isLoaded && (profile.profileBackgroundImgUrl === '')) || (isLoaded && !profile.booleans.backgroundB))) {
-      return { marginTop: '15px' }
+      return {
+        marginTop: '15px',
+        borderColor: `${profile.trimColor}`,
+        color: `${profile.textColor}`
+       }
     } else {
-      return { marginTop: '70px' }
+      return {
+        marginTop: '70px',
+        borderColor: `${profile.trimColor}`,
+        color: `${profile.textColor}`
+       }
     }
   }
 
@@ -175,9 +185,25 @@ const FriendProfilePage = () => {
     }
   }
 
+  const ifBioColors = () => {
+    if ((isLoaded && (profile.bio !== '')) && (profile.booleans.bioB)) {
+      return {
+        backgroundColor: `${profile.themeColor}`
+      }
+    }
+  }
+
   const ifDetailsCss = () => {
     if (isLoaded && (profile.booleans.zodiacB || profile.booleans.heightB || profile.booleans.relationshipB || profile.booleans.birthdayB)) {
       return "user-profile-details"
+    }
+  }
+
+  const ifDetailsColors = () => {
+    if (isLoaded && (profile.booleans.zodiacB || profile.booleans.heightB || profile.booleans.relationshipB || profile.booleans.birthdayB)) {
+      return {
+        backgroundColor: `${profile.themeColor}`
+      }
     }
   }
 
@@ -199,15 +225,18 @@ const FriendProfilePage = () => {
             {ifLastName()}
             {friendButton()}
           </div>
+          <div className="user-page-profile-pic-container">
+            <img className="user-page-profile-pic" src={`${profile.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
+          </div>
         </div>
         <div className="user-profile-bio-and-details">
-          <div className={ifDetailsCss()}>
+          <div style={ifDetailsColors()} className={ifDetailsCss()}>
             {ifRelationship()}
             {ifBirthday()}
             {ifZodiac()}
             {ifHeight()}
           </div>
-          <div className={ifBioCss()}>
+          <div style={ifBioColors()} className={ifBioCss()}>
             {ifBio()}
           </div>
         </div>

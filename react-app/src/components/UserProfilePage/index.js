@@ -32,16 +32,26 @@ const UserProfilePage = () => {
         zIndex: '-100',
         height: '100%',
         width: '100%',
-        backgroundImage: `url(${currentUser.profileBackgroundImgUrl})`
+        backgroundImage: `url(${currentUser.profileBackgroundImgUrl})`,
+        borderColor: `${currentUser.trimColor}`,
+        color: `${currentUser.textColor}`
       }
     }
   }
 
   const ifNoBackground = () => {
     if (((isLoaded && (currentUser.profileBackgroundImgUrl === '')) || (isLoaded && !currentUser.booleans.backgroundB))) {
-      return { marginTop: '15px' }
+      return {
+        marginTop: '15px',
+        borderColor: `${currentUser.trimColor}`,
+        color: `${currentUser.textColor}`
+       }
     } else {
-      return { marginTop: '70px' }
+      return {
+        marginTop: '70px',
+        borderColor: `${currentUser.trimColor}`,
+        color: `${currentUser.textColor}`
+       }
     }
   }
 
@@ -98,7 +108,7 @@ const UserProfilePage = () => {
   }
 
   const ifZodiac = () => {
-    if (isLoaded  && currentUser.booleans.zodiacB) {
+    if (isLoaded && currentUser.booleans.zodiacB) {
       return (
         <div className="user-profile-detail">Zodiac: {currentUser.zodiac}</div>
       )
@@ -127,11 +137,28 @@ const UserProfilePage = () => {
     }
   }
 
+  const ifBioColors = () => {
+    if ((isLoaded && (currentUser.bio !== '')) && (currentUser.booleans.bioB)) {
+      return {
+        backgroundColor: `${currentUser.themeColor}`
+      }
+    }
+  }
+
   const ifDetailsCss = () => {
     if (isLoaded && (currentUser.booleans.zodiacB || currentUser.booleans.heightB || currentUser.booleans.relationshipB || currentUser.booleans.birthdayB)) {
       return "user-profile-details"
     }
   }
+
+  const ifDetailsColors = () => {
+    if (isLoaded && (currentUser.booleans.zodiacB || currentUser.booleans.heightB || currentUser.booleans.relationshipB || currentUser.booleans.birthdayB)) {
+      return {
+        backgroundColor: `${currentUser.themeColor}`
+      }
+    }
+  }
+
 
 
 
@@ -140,7 +167,9 @@ const UserProfilePage = () => {
       <div style={ifNoBackground()}>
         <div className="user-profile-header">
           <div className="user-profile-card-details">
-            {currentUser.username}
+            <div className="user-profile-firstName">
+              {currentUser.username}
+            </div>
             {ifMotto()}
             {ifCard()}
           </div>
@@ -148,15 +177,18 @@ const UserProfilePage = () => {
             {ifFirstName()}
             {ifLastName()}
           </div>
+          <div className="user-page-profile-pic-container">
+            <img className="user-page-profile-pic" src={`${currentUser.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
+          </div>
         </div>
         <div className="user-profile-bio-and-details">
-          <div className={ifDetailsCss()}>
+          <div style={ifDetailsColors()} className={ifDetailsCss()}>
             {ifRelationship()}
             {ifBirthday()}
             {ifZodiac()}
             {ifHeight()}
           </div>
-          <div className={ifBioCss()}>
+          <div style={ifBioColors()} className={ifBioCss()}>
             {ifBio()}
           </div>
         </div>
