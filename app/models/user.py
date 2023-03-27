@@ -24,6 +24,9 @@ class User(db.Model, UserMixin):
     profile_background_img_url = db.Column(db.String)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    text_color = db.Column(db.String)
+    theme_color = db.Column(db.String)
+    trim_color = db.Column(db.String)
 
     friends = db.relationship("Friend", foreign_keys='Friend.user_id', back_populates="user")
     posts = db.relationship("Post", back_populates="user")
@@ -56,6 +59,9 @@ class User(db.Model, UserMixin):
             'cardImgUrl': self.card_img_url,
             'profileBackgroundImgUrl': self.profile_background_img_url,
             'email': self.email,
+            'textColor': self.text_color,
+            'themeColor': self.theme_color,
+            'trimColor': self.trim_color,
             'friends': [friend.to_dict() for friend in self.friends],
             'booleans': self.booleans.to_dict()
         }

@@ -119,7 +119,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 };
 
 
-export const editUser = (id, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB) => async (dispatch) => {
+export const editUser = (id, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB, textColor, themeColor, trimColor) => async (dispatch) => {
 	const response = await fetch(`/api/users/${id}`, {
 		method: "PUT",
 		headers: {
@@ -148,7 +148,10 @@ export const editUser = (id, username, firstName, firstNameB, lastName, lastName
 			card_img_url: cardImg,
 			card_b: cardImgB,
 			profile_background_img_url: background,
-			background_b: backgroundB
+			background_b: backgroundB,
+			text_color: textColor,
+			theme_color: themeColor,
+			trim_color: trimColor
 		}),
 	});
 

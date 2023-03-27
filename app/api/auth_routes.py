@@ -76,6 +76,9 @@ def sign_up():
             card_img_url=form.data['card_img_url'],
             profile_background_img_url=form.data['profile_background_img_url'],
             email=form.data['email'],
+            text_color='blueviolet',
+            theme_color='aqua',
+            trim_color='blueviolet',
             password=form.data['password']
         )
 

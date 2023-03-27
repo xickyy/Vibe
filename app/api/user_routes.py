@@ -66,6 +66,9 @@ def edit_user(user_id):
         user.card_img_url = form.card_img_url.data
         user.profile_background_img_url = form.profile_background_img_url.data
         user.email = form.email.data
+        user.text_color = form.text_color.data
+        user.theme_color = form.theme_color.data
+        user.trim_color = form.trim_color.data
 
         booleans.first_name_b = form.first_name_b.data
         booleans.last_name_b = form.last_name_b.data

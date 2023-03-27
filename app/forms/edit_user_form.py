@@ -37,6 +37,9 @@ class EditUserForm(FlaskForm):
     profile_background_img_url = StringField('Profile Background Image Url')
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password')
+    text_color = StringField('color')
+    theme_color = StringField('color')
+    trim_color = StringField('color')
 
     first_name_b = BooleanField(False)
     last_name_b = BooleanField(False)

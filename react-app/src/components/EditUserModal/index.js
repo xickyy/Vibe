@@ -24,6 +24,9 @@ function EditUserModal({ user }) {
 	const [motto, setMotto] = useState(user.motto || '');
 	const [cardImg, setCardImg] = useState(user.cardImgUrl || '');
 	const [background, setBackground] = useState(user.profileBackgroundImgUrl || '')
+	const [textColor, setTextColor] = useState(user.textColor || 'blueviolet')
+	const [themeColor, setThemeColor] = useState(user.themeColor || 'aqua')
+	const [trimColor, setTrimColor] = useState(user.trimColor || 'blueviolet')
 
 	const [firstNameB, setFirstNameB] = useState(user.booleans.firstNameB || false)
 	const [lastNameB, setLastNameB] = useState(user.booleans.lastNameB || false)
@@ -48,7 +51,7 @@ function EditUserModal({ user }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (userId) {
-			const data = await dispatch(editUser(userId, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB));
+			const data = await dispatch(editUser(userId, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB, textColor, themeColor, trimColor));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -72,6 +75,8 @@ function EditUserModal({ user }) {
 
 	let zodiacs = ['Rather not say', 'Aquarius', 'Capricorn', 'Sagittarius', 'Scorpio', 'Libra', 'Virgo', 'Leo', 'Cancer', 'Gemini', 'Taurus', 'Aries', 'Pisces']
 	let realtionships = ['Rather not say', 'Single', 'Situationship', 'Available', 'In a Relationship', 'Married', "Don't talk to me", 'Divorced', 'Open', "It's Complicated", 'Hopeless Romantic']
+	const colors = ['blueviolet', 'aqua', 'forestgreen', 'black', 'white', 'chartreuse', 'darkmagenta', 'chrimson', 'deeppink', 'gold', 'orange', 'lightgrey']
+
 	return (
 		<div className="edit-user-modal-container">
 			<div className="edit-user-info">
@@ -242,6 +247,54 @@ function EditUserModal({ user }) {
 							value={background}
 							onChange={(e) => setBackground(e.target.value)}
 						/>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Text Color
+					<div>
+						<select className="edit-user-input-select" value={textColor} onChange={e => setTextColor(e.target.value)}>
+							<option disabled>{'Please select a color'}</option>
+							{colors.map(color => (
+								<option
+									key={color}
+									value={color}
+								>
+									{color}
+								</option>
+							))}
+						</select>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Theme Color
+					<div>
+						<select className="edit-user-input-select" value={themeColor} onChange={e => setThemeColor(e.target.value)}>
+							<option disabled>{'Please select a color'}</option>
+							{colors.map(color => (
+								<option
+									key={color}
+									value={color}
+								>
+									{color}
+								</option>
+							))}
+						</select>
+					</div>
+				</label>
+				<label className="edit-user-labels">
+					Trim Color
+					<div>
+						<select className="edit-user-input-select" value={trimColor} onChange={e => setTrimColor(e.target.value)}>
+							<option disabled>{'Please select a color'}</option>
+							{colors.map(color => (
+								<option
+									key={color}
+									value={color}
+								>
+									{color}
+								</option>
+							))}
+						</select>
 					</div>
 				</label>
 				<div className="edit-user-save-delete-buttons">
