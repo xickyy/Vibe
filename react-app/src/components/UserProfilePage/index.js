@@ -37,6 +37,14 @@ const UserProfilePage = () => {
     }
   }
 
+  const ifNoBackground = () => {
+    if (((isLoaded && (currentUser.profileBackgroundImgUrl === '')) || (isLoaded && !currentUser.booleans.backgroundB))) {
+      return { marginTop: '15px' }
+    } else {
+      return { marginTop: '70px' }
+    }
+  }
+
   const ifFirstName = () => {
     if ((isLoaded && (currentUser.firstName !== '')) && (currentUser.booleans.firstNameB)) {
       return (
@@ -73,10 +81,50 @@ const UserProfilePage = () => {
     }
   }
 
+  const ifRelationship = () => {
+    if ((isLoaded && currentUser.booleans.relationshipB)) {
+      return (
+        <div className="user-profile-detail">Relationship: {currentUser.relationshipStatus}</div>
+      )
+    }
+  }
+
+  const ifBirthday = () => {
+    if ((isLoaded && (currentUser.birthday !== '')) && (currentUser.booleans.birthdayB)) {
+      return (
+        <div className="user-profile-detail">Birthday: {currentUser.birthday}</div>
+      )
+    }
+  }
+
+  const ifZodiac = () => {
+    if (isLoaded  && currentUser.booleans.zodiacB) {
+      return (
+        <div className="user-profile-detail">Zodiac: {currentUser.zodiac}</div>
+      )
+    }
+  }
+
+  const ifHeight = () => {
+    if ((isLoaded && (currentUser.height !== '')) && (currentUser.booleans.heightB)) {
+      return (
+        <div className="user-profile-detail">Height: {currentUser.height}</div>
+      )
+    }
+  }
+
+  const ifBio = () => {
+    if ((isLoaded && (currentUser.bio !== '')) && (currentUser.booleans.bioB)) {
+      return (
+        <div className="user-profile-bio">Bio: {currentUser.bio}</div>
+      )
+    }
+  }
+
 
   return (
     <div style={ifBackground()}>
-      <div style={{ marginTop: '70px' }}>
+      <div style={ifNoBackground()}>
         <div className="user-profile-header">
           <div className="user-profile-card-details">
             {currentUser.username}
@@ -86,6 +134,17 @@ const UserProfilePage = () => {
           <div className="user-profile-first-last-name">
             {ifFirstName()}
             {ifLastName()}
+          </div>
+        </div>
+        <div className="user-profile-bio-and-details">
+          <div className="user-profile-details">
+            {ifRelationship()}
+            {ifBirthday()}
+            {ifZodiac()}
+            {ifHeight()}
+          </div>
+          <div className="user-profile-container">
+            {ifBio()}
           </div>
         </div>
       </div>
