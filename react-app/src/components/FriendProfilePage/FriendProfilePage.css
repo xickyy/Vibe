@@ -50,6 +50,10 @@
   width: 100%;
 }
 
+.friend-page-username {
+  text-decoration: underline;
+}
+
 .user-profile-detail {
   margin: 7px;
 }

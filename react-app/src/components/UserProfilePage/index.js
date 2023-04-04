@@ -45,13 +45,13 @@ const UserProfilePage = () => {
         marginTop: '15px',
         borderColor: `${currentUser.trimColor}`,
         color: `${currentUser.textColor}`
-       }
+      }
     } else {
       return {
         marginTop: '70px',
         borderColor: `${currentUser.trimColor}`,
         color: `${currentUser.textColor}`
-       }
+      }
     }
   }
 
@@ -71,13 +71,24 @@ const UserProfilePage = () => {
     }
   }
 
+  const ifCardColors = () => {
+    if ((isLoaded && (currentUser.cardImgUrl !== '')) && (currentUser.booleans.cardB)) {
+      return {
+        border: '2px',
+        borderStyle: 'Solid',
+        borderColor: `${currentUser.trimColor}`
+      }
+    }
+  }
+
   const ifCard = () => {
     if ((isLoaded && (currentUser.cardImgUrl !== '')) && (currentUser.booleans.cardB)) {
       return (
-        <img className="user-profile-card-img" src={currentUser.cardImgUrl} alt=''></img>
+        <img style={ifCardColors()} className="user-profile-card-img" src={currentUser.cardImgUrl} alt=''></img>
       )
     }
   }
+
 
   const ifMotto = () => {
     if ((isLoaded && (currentUser.motto !== '')) && (currentUser.booleans.mottoB)) {
@@ -140,7 +151,8 @@ const UserProfilePage = () => {
   const ifBioColors = () => {
     if ((isLoaded && (currentUser.bio !== '')) && (currentUser.booleans.bioB)) {
       return {
-        backgroundColor: `${currentUser.themeColor}`
+        backgroundColor: `${currentUser.themeColor}`,
+        borderColor: `${currentUser.trimColor}`
       }
     }
   }
@@ -154,7 +166,17 @@ const UserProfilePage = () => {
   const ifDetailsColors = () => {
     if (isLoaded && (currentUser.booleans.zodiacB || currentUser.booleans.heightB || currentUser.booleans.relationshipB || currentUser.booleans.birthdayB)) {
       return {
-        backgroundColor: `${currentUser.themeColor}`
+        backgroundColor: `${currentUser.themeColor}`,
+        borderColor: `${currentUser.trimColor}`
+
+      }
+    }
+  }
+
+  const profBorderColor = () => {
+    if (isLoaded) {
+      return {
+        borderColor: `${currentUser.trimColor}`
       }
     }
   }
@@ -178,7 +200,7 @@ const UserProfilePage = () => {
             {ifLastName()}
           </div>
           <div className="user-page-profile-pic-container">
-            <img className="user-page-profile-pic" src={`${currentUser.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
+            <img style={profBorderColor()} className="user-page-profile-pic" src={`${currentUser.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
           </div>
         </div>
         <div className="user-profile-bio-and-details">

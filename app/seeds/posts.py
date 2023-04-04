@@ -23,9 +23,16 @@ def seed_posts():
         user_id=3,
         date= datetime.datetime(2022, 6, 5, 12, 7, 50, 873302))
 
+    post4 = Post(
+        body='Just got back from snowboarding! almost got frontflips down!',
+        mood='Excited!',
+        user_id=4,
+        date= datetime.datetime(2023, 6, 5, 12, 7, 50, 873302))
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
+    db.session.add(post4)
     db.session.commit()
 
 

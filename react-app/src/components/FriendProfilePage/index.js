@@ -93,13 +93,13 @@ const FriendProfilePage = () => {
         marginTop: '15px',
         borderColor: `${profile.trimColor}`,
         color: `${profile.textColor}`
-       }
+      }
     } else {
       return {
         marginTop: '70px',
         borderColor: `${profile.trimColor}`,
         color: `${profile.textColor}`
-       }
+      }
     }
   }
 
@@ -119,10 +119,20 @@ const FriendProfilePage = () => {
     }
   }
 
+  const ifCardColors = () => {
+    if ((isLoaded && (profile.cardImgUrl !== '')) && (profile.booleans.cardB)) {
+      return {
+        border: '2px',
+        borderStyle: 'Solid',
+        borderColor: `${profile.trimColor}`
+      }
+    }
+  }
+
   const ifCard = () => {
     if ((isLoaded && (profile.cardImgUrl !== '')) && (profile.booleans.cardB)) {
       return (
-        <img className="user-profile-card-img" src={profile.cardImgUrl} alt=''></img>
+        <img style={ifCardColors()} className="user-profile-card-img" src={profile.cardImgUrl} alt=''></img>
       )
     }
   }
@@ -156,7 +166,7 @@ const FriendProfilePage = () => {
   }
 
   const ifZodiac = () => {
-    if (isLoaded  && profile.booleans.zodiacB) {
+    if (isLoaded && profile.booleans.zodiacB) {
       return (
         <div className="user-profile-detail">Zodiac: {profile.zodiac}</div>
       )
@@ -188,7 +198,8 @@ const FriendProfilePage = () => {
   const ifBioColors = () => {
     if ((isLoaded && (profile.bio !== '')) && (profile.booleans.bioB)) {
       return {
-        backgroundColor: `${profile.themeColor}`
+        backgroundColor: `${profile.themeColor}`,
+        borderColor: `${profile.trimColor}`
       }
     }
   }
@@ -202,7 +213,16 @@ const FriendProfilePage = () => {
   const ifDetailsColors = () => {
     if (isLoaded && (profile.booleans.zodiacB || profile.booleans.heightB || profile.booleans.relationshipB || profile.booleans.birthdayB)) {
       return {
-        backgroundColor: `${profile.themeColor}`
+        backgroundColor: `${profile.themeColor}`,
+        borderColor: `${profile.trimColor}`
+      }
+    }
+  }
+
+  const profBorderColor = () => {
+    if (isLoaded) {
+      return {
+        borderColor: `${profile.trimColor}`
       }
     }
   }
@@ -211,12 +231,14 @@ const FriendProfilePage = () => {
 
 
 
-  return ( isLoaded &&
+  return (isLoaded &&
     <div style={ifBackground()}>
       <div style={ifNoBackground()}>
         <div className="user-profile-header">
           <div className="user-profile-card-details">
-            {profile.username}
+            <div className="friend-page-username">
+              {profile.username}
+            </div>
             {ifMotto()}
             {ifCard()}
           </div>
@@ -226,7 +248,7 @@ const FriendProfilePage = () => {
             {friendButton()}
           </div>
           <div className="user-page-profile-pic-container">
-            <img className="user-page-profile-pic" src={`${profile.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
+            <img style={profBorderColor()} className="user-page-profile-pic" src={`${profile.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
           </div>
         </div>
         <div className="user-profile-bio-and-details">

@@ -28,7 +28,7 @@ def seed_users():
         first_name='Marnie',
         last_name='Jones',
         profile_pic_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ7FueiEol2vHKav5amZCYS2VgYGdKH4oFtw&usqp=CAU',
-        bio='my bio is better tahn yours!',
+        bio='my bio is better than yours!',
         zodiac='Sagittarius',
         height='4"11',
         relationship_status='Open',
@@ -61,9 +61,29 @@ def seed_users():
         trim_color='blueviolet',
         password='password')
 
+    xickyy = User(
+        username='xickyy',
+        first_name='Wuss',
+        last_name='Poppin',
+        profile_pic_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdHWA5m3qtcwjDUwKfahd-y4ITJQpx_28CA&usqp=CAU',
+        bio='Ayooo my name is ricky and i built this website!! I ride snowboards, dirtbikes, jetskis and streetbikes!',
+        zodiac='Aquarius',
+        height='5"8',
+        relationship_status="Don't talk to me",
+        birthday='01-23-1996',
+        motto='I be doin what i want ',
+        card_img_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhYsItsH9PVe8MWPPLczqigj97j3hg6-ai7K_a7z8Bbiw7-uWByneP1gXTvEU87A_uA&usqp=CAU',
+        profile_background_img_url='https://cdn.wallpapersafari.com/4/56/kbALhV.jpg',
+        email='xickyy@aa.io',
+        text_color='chartreuse',
+        theme_color='black',
+        trim_color='chartreuse',
+        password='qqwweerr')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(xickyy)
     db.session.commit()
 
 

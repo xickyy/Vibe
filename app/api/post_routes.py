@@ -17,15 +17,18 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
-    
+
 
 @post_routes.route('/', methods=["GET"])
 def all_posts():
     """
     Query for all users posts and users friends posts.
     """
-    
-    posts = Post.query.join(User).join(Friend, User.id == Friend.friend_id).filter((Friend.user_id == current_user.id) | (Post.user_id == current_user.id)).all()
+    ids = [current_user.id]
+    friends = Friend.query.filter(Friend.user_id == current_user.id).all()
+    for friend in friends: ids.append(friend.friend_id)
+    posts = Post.query.filter(Post.user_id.in_(ids)).all()
+    # posts = Post.query.join(User).join(Friend, User.id == Friend.user_id).filter((Friend.user_id == current_user.id) | (Post.user_id == current_user.id)).all()
     return [post.to_dict() for post in posts]
 
 
@@ -84,4 +87,4 @@ def edit_post(post_id):
         db.session.commit()
         return post.to_dict()
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
