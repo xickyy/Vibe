@@ -47,12 +47,24 @@ def deletes_friend(friend_id):
 
 
 @friend_routes.route('/display-friends', methods=["GET"])
-def all_posts():
+def display_friend_list():
     """
     Query for all users friends.
     """
     ids = []
     friends = Friend.query.filter(Friend.user_id == current_user.id).all()
+    for friend in friends: ids.append(friend.friend_id)
+    users = User.query.filter(User.id.in_(ids)).all()
+    return [user.to_dict() for user in users]
+
+
+@friend_routes.route('/display-friends/<int:friend_id>', methods=["GET"])
+def display_friend_list_friend(friend_id):
+    """
+    Query for all friends friends.
+    """
+    ids = []
+    friends = Friend.query.filter(Friend.user_id == friend_id).all()
     for friend in friends: ids.append(friend.friend_id)
     users = User.query.filter(User.id.in_(ids)).all()
     return [user.to_dict() for user in users]

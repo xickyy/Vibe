@@ -3,7 +3,7 @@ import "./FriendProfilePage.css";
 import { getFriendThunk } from "../../store/profile";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 import { addFriendThunk, deleteFriendThunk } from "../../store/friends";
 
 
@@ -11,6 +11,7 @@ const FriendProfilePage = () => {
 
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [friendsList, setFriendsList] = useState([]);
   const dispatch = useDispatch();
   const { friendId } = useParams();
 
@@ -29,7 +30,12 @@ const FriendProfilePage = () => {
   }
 
   useEffect(() => {
-    dispatch(getFriendThunk(friendId))
+    const getFriends = async () => {
+      const response = await fetch(`/api/friends/display-friends/${friendId}`);
+      const data = await response.json();
+      setFriendsList(data);
+    };
+    dispatch(getFriendThunk(friendId)).then(getFriends())
       .then(() => setIsLoaded(true));
   }, [dispatch, friendId]);
 
@@ -68,6 +74,34 @@ const FriendProfilePage = () => {
   }
 
 
+  const ifFriends = () => {
+    if (true) {
+      return (
+        <>
+          <p style={{backgroundColor: `${profile.themeColor}`, border: '2px', borderStyle: 'solid', borderColor: `${profile.trimColor}`}} className="display-friends-intro">Check Out All My Friends!</p>
+          <div className="display-friends-container">
+            {friendsList &&
+              friendsList.map((friend) => (
+                <div style={{borderColor: `${friend.trimColor}`}} className="friend-card-container" key={friend.id}>
+                  <div style={{ color: `${friend.textColor}` }} className="display-friends-username-and-motto">
+                    <p className="friend-list-display-username">
+                      {friend.username}
+                    </p>
+                    <p className="friend-list-display-motto">
+                      {friend.motto}
+                    </p>
+                  </div>
+                  <Link to={`/users/${friend.id}`}>
+                    <img style={{borderColor: `${friend.trimColor}`}} className="friend-list-profile-img" src={friend.profilePicUrl}></img>
+                  </Link>
+                    <img className="friend-list-card-img" src={friend.cardImgUrl}></img>
+                </div>
+              ))}
+          </div>
+        </>
+      )
+    }
+  }
 
 
 
@@ -261,6 +295,9 @@ const FriendProfilePage = () => {
           <div style={ifBioColors()} className={ifBioCss()}>
             {ifBio()}
           </div>
+        </div>
+        <div>
+          {ifFriends()}
         </div>
       </div>
     </div>
