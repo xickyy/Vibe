@@ -33,7 +33,7 @@ const UserProfilePage = () => {
     if (true) {
       return (
         <>
-          <p className="display-friends-intro">Check Out All My Friends!</p>
+          <p style={{backgroundColor: `${currentUser.themeColor}`, border: '2px', borderStyle: 'solid', borderColor: `${currentUser.trimColor}`}} className="display-friends-intro">Check Out All Your Friends!</p>
           <div className="display-friends-container">
             {friendsList &&
               friendsList.map((friend) => (
