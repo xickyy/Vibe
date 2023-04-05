@@ -47,9 +47,9 @@ const UserProfilePage = () => {
                     </p>
                   </div>
                   <Link to={`/users/${friend.id}`}>
-                    <img style={{borderColor: `${friend.trimColor}`}} className="friend-list-profile-img" src={friend.profilePicUrl}></img>
+                    <img style={{borderColor: `${friend.trimColor}`}} className="friend-list-profile-img" src={friend.profilePicUrl} alt=''></img>
                   </Link>
-                    <img className="friend-list-card-img" src={friend.cardImgUrl}></img>
+                    <img className="friend-list-card-img" src={friend.cardImgUrl} alt=''></img>
                 </div>
               ))}
           </div>
