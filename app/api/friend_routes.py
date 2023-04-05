@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, render_template, request
-from app.models import Friend, db
+from app.models import Friend, User, db
 from flask_login import current_user
 from ..forms.friends_form import FriendForm
 
@@ -44,3 +44,15 @@ def deletes_friend(friend_id):
     db.session.delete(friend)
     db.session.commit()
     return {'id': friend_id ,'message': 'Friend has been deleted!'}
+
+
+@friend_routes.route('/display-friends', methods=["GET"])
+def all_posts():
+    """
+    Query for all users friends.
+    """
+    ids = []
+    friends = Friend.query.filter(Friend.user_id == current_user.id).all()
+    for friend in friends: ids.append(friend.friend_id)
+    users = User.query.filter(User.id.in_(ids)).all()
+    return [user.to_dict() for user in users]

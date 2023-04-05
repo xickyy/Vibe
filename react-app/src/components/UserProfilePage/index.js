@@ -1,11 +1,13 @@
 import "./UserProfilePage.css";
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const UserProfilePage = () => {
   const [currentUser, setUser] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [friendsList, setFriendsList] = useState([]);
 
   let userState = useSelector((state) => state.session);
   let userId;
@@ -19,9 +21,42 @@ const UserProfilePage = () => {
       const user = await userResponse.json();
       setUser(user);
     };
-    fetchData().then(() => setIsLoaded(true));
+    const getFriends = async () => {
+      const response = await fetch('/api/friends/display-friends');
+      const data = await response.json();
+      setFriendsList(data);
+    };
+    fetchData().then(getFriends()).then(() => setIsLoaded(true));
   }, [userId]);
 
+  const ifFriends = () => {
+    if (true) {
+      return (
+        <>
+          <p className="display-friends-intro">Check Out All My Friends!</p>
+          <div className="display-friends-container">
+            {friendsList &&
+              friendsList.map((friend) => (
+                <div style={{borderColor: `${friend.trimColor}`}} className="friend-card-container" key={friend.id}>
+                  <div style={{ color: `${friend.textColor}` }} className="display-friends-username-and-motto">
+                    <p className="friend-list-display-username">
+                      {friend.username}
+                    </p>
+                    <p className="friend-list-display-motto">
+                      {friend.motto}
+                    </p>
+                  </div>
+                  <Link to={`/users/${friend.id}`}>
+                    <img style={{borderColor: `${friend.trimColor}`}} className="friend-list-profile-img" src={friend.profilePicUrl}></img>
+                  </Link>
+                    <img className="friend-list-card-img" src={friend.cardImgUrl}></img>
+                </div>
+              ))}
+          </div>
+        </>
+      )
+    }
+  }
 
   const ifBackground = () => {
     if ((isLoaded && (currentUser.profileBackgroundImgUrl !== '')) && (currentUser.booleans.backgroundB)) {
@@ -213,6 +248,9 @@ const UserProfilePage = () => {
           <div style={ifBioColors()} className={ifBioCss()}>
             {ifBio()}
           </div>
+        </div>
+        <div>
+          {ifFriends()}
         </div>
       </div>
     </div>
