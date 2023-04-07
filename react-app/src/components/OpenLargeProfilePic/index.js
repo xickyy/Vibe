@@ -1,17 +1,13 @@
 import "./OpenLargeProfilePic.css";
 
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { editPostThunk } from '../../store/posts'
-import { useModal } from "../../context/Modal";
+import React from "react";
 
 
 function OpenLargeProfilePic({user}) {
 
-  const { closeModal } = useModal();
 
   return (
-    <img src={user.profilePicUrl} alt=''></img>
+    <img src={user.profilePicUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
   )
 }
 

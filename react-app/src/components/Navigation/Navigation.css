@@ -9,6 +9,7 @@
   border: 2px;
   border-color: aqua;
   border-style: dashed;
+  z-index: 10000;
 }
 
 .hidden {
