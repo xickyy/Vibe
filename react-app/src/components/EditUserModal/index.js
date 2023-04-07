@@ -15,7 +15,7 @@ function EditUserModal({ user }) {
 	const [firstName, setFirstName] = useState(user.firstName || '');
 	const [lastName, setLastName] = useState(user.lastName || '');
 	const [username, setUsername] = useState(user.username);
-	const [profilePic, setProfilePic] = useState(user.profilePicUrl || '');
+	// const [profilePic, setProfilePic] = useState(user.profilePicUrl || '');
 	const [bio, setBio] = useState(user.bio || '');
 	const [zodiac, setZodiac] = useState(user.zodiac || 'Rather not say');
 	const [height, setHeight] = useState(user.height || '');
@@ -48,10 +48,14 @@ function EditUserModal({ user }) {
 	let userId = userState.user.id;
 
 
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (userId) {
-			const data = await dispatch(editUser(userId, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, profilePic, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB, textColor, themeColor, trimColor));
+			const data = await dispatch(editUser(userId, username, firstName, firstNameB, lastName, lastNameB, email, zodiac, zodiacB, image, bio, bioB, height, heightB, relStatus, relStatusB, birthday, birthdayB, motto, mottoB, cardImg, cardImgB, background, backgroundB, textColor, themeColor, trimColor));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -83,7 +87,7 @@ function EditUserModal({ user }) {
 				<h2 className="edit-user-title">Edit Profile</h2>
 				<p className="edit-user-info-text">Blue checkmarks indicate weather or not you wish to display that information on your profile.</p>
 			</div>
-			<form className="edit-user-details-container" onSubmit={handleSubmit}>
+			<form encType="multipart/form-data" className="edit-user-details-container" onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
@@ -113,9 +117,10 @@ function EditUserModal({ user }) {
 					Profile Picture Url
 					<input
 						className="edit-user-input-boxes"
-						type="text"
-						value={profilePic}
-						onChange={(e) => setProfilePic(e.target.value)}
+						type="file"
+						accept="image/*"
+						// value={image}
+						onChange={(e) => setImage(e.target.files[0])}
 					/>
 				</label>
 				<label className="edit-user-labels">

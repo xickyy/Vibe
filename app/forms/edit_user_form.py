@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, DateField, BooleanField
+from wtforms import StringField, SelectField, DateField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from app.s3_helpers import ALLOWED_EXTENSIONS
 from app.models import User, Boolean
 from flask_login import current_user
 
@@ -26,7 +28,7 @@ class EditUserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), username_exists])
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
-    profile_pic_url = StringField('Profile Picture Url')
+    profile_pic_url = FileField('Profile Picture Url', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     bio = StringField('Bio')
     zodiac = StringField('Zodiac Sign')
     height = StringField('Height')

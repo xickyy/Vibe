@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import User, Boolean, db
 from app.forms import EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 user_routes = Blueprint('users', __name__)
 
@@ -53,10 +54,13 @@ def edit_user(user_id):
         if user is None:
             return {'errors': ['Product not found']}, 404
 
+        image = request.files["image"]
         user.username = form.username.data
         user.first_name = form.first_name.data
         user.last_name = form.last_name.data
         user.profile_pic_url = form.profile_pic_url.data
+        user.filename = get_unique_filename(user.filename)
+        upload = upload_file_to_s3(image)
         user.bio = form.bio.data
         user.zodiac = form.zodiac.data
         user.height = form.height.data
@@ -81,6 +85,9 @@ def edit_user(user_id):
         booleans.relationship_b = form.relationship_b.data
         booleans.background_b = form.background_b.data
 
+        url = upload["url"]
+        new_image = User(user=current_user, url=url)
+        db.session.add(new_image)
         db.session.commit()
         return user.to_dict(), booleans.to_dict()
 
