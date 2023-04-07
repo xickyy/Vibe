@@ -43,26 +43,27 @@ function EditPost({ post }) {
   };
 
   return (
-    <div className="create-post-container">
-      <h3>Create a Post!</h3>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-post-container">
+      <h3 className="edit-post-text">Edit Your Post!</h3>
+      <form className="edit-post-inputs-container" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
+        <label className="edit-posts-spacing-on-inputs">
           Body:
           <textarea
+          className="edit-post-text-area"
             type="text"
             value={body}
             required
             onChange={(e) => setBody(e.target.value)}
           />
         </label>
-        <label>
+        <label className="edit-posts-spacing-on-inputs">
           Mood:
-          <select value={mood} onChange={e => setMood(e.target.value)}>
+          <select className="edit-post-select-input" value={mood} onChange={e => setMood(e.target.value)}>
             <option disabled>{'How are you feeling?'}</option>
             {moods.map(mood => (
               <option
@@ -74,7 +75,7 @@ function EditPost({ post }) {
             ))}
           </select>
         </label>
-        <button type="submit">Post!</button>
+        <button className="edit-post-button" type="submit">Post!</button>
       </form>
     </div>
   );

@@ -22,3 +22,21 @@
   position: absolute;
   background-color:white;
 }
+
+.fa-arrow-up-right-from-square {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
+i#clearBtn.fa-solid.fa-arrow-up-right-from-square {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  margin-left: -9px ;
+  z-index: 1001;
+}

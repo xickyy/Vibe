@@ -25,6 +25,7 @@
 .user-page-profile-pic {
   border: 2px;
   border-style: solid;
+  border-radius: 20px;
   height: 75px;
   width: 75px;
 }
@@ -148,4 +149,22 @@ height: 75px;
   margin-top: -20px;
   margin-left: 79px;
   margin-top: -18px;
+}
+
+.open-large-profile-picture {
+  height: 100px;
+  width: 75px;
+  margin-right: 100px;
+}
+
+.user-page-profile-pic-container button {
+  width: 79px;
+  margin-right: -79px;
+  background-color: transparent;
+  border-color: transparent;
+  z-index: 10;
+}
+
+.user-page-profile-pic-container button:hover {
+  cursor: pointer;
 }

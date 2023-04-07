@@ -3,6 +3,9 @@ import "./UserProfilePage.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useModal } from "../../context/Modal";
+import OpenLargeProfilePic from "../OpenLargeProfilePic";
+import OpenModalButton from "../OpenModalButton";
 
 const UserProfilePage = () => {
   const [currentUser, setUser] = useState([]);
@@ -33,11 +36,11 @@ const UserProfilePage = () => {
     if (true) {
       return (
         <>
-          <p style={{backgroundColor: `${currentUser.themeColor}`, border: '2px', borderStyle: 'solid', borderColor: `${currentUser.trimColor}`}} className="display-friends-intro">Check Out All Your Friends!</p>
+          <p style={{ backgroundColor: `${currentUser.themeColor}`, border: '2px', borderStyle: 'solid', borderColor: `${currentUser.trimColor}` }} className="display-friends-intro">Check Out All Your Friends!</p>
           <div className="display-friends-container">
             {friendsList &&
               friendsList.map((friend) => (
-                <div style={{borderColor: `${friend.trimColor}`}} className="friend-card-container" key={friend.id}>
+                <div style={{ borderColor: `${friend.trimColor}` }} className="friend-card-container" key={friend.id}>
                   <div style={{ color: `${friend.textColor}` }} className="display-friends-username-and-motto">
                     <p className="friend-list-display-username">
                       {friend.username}
@@ -47,9 +50,9 @@ const UserProfilePage = () => {
                     </p>
                   </div>
                   <Link to={`/users/${friend.id}`}>
-                    <img style={{borderColor: `${friend.trimColor}`}} className="friend-list-profile-img" src={friend.profilePicUrl} alt=''></img>
+                    <img style={{ borderColor: `${friend.trimColor}` }} className="friend-list-profile-img" src={friend.profilePicUrl} alt=''></img>
                   </Link>
-                    <img className="friend-list-card-img" src={friend.cardImgUrl} alt=''></img>
+                  <img className="friend-list-card-img" src={friend.cardImgUrl} alt=''></img>
                 </div>
               ))}
           </div>
@@ -235,8 +238,10 @@ const UserProfilePage = () => {
             {ifLastName()}
           </div>
           <div className="user-page-profile-pic-container">
+              < OpenModalButton modalComponent={<OpenLargeProfilePic user={userState.user} />} />
             <img style={profBorderColor()} className="user-page-profile-pic" src={`${currentUser.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
           </div>
+
         </div>
         <div className="user-profile-bio-and-details">
           <div style={ifDetailsColors()} className={ifDetailsCss()}>

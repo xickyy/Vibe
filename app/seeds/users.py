@@ -65,7 +65,7 @@ def seed_users():
         username='xickyy',
         first_name='Wuss',
         last_name='Poppin',
-        profile_pic_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvdHWA5m3qtcwjDUwKfahd-y4ITJQpx_28CA&usqp=CAU',
+        profile_pic_url='https://vibeproject.s3.us-west-1.amazonaws.com/vibe-profile-pic.png',
         bio='Ayooo my name is ricky and i built this website!! I ride snowboards, dirtbikes, jetskis and streetbikes!',
         zodiac='Aquarius',
         height='5"8',

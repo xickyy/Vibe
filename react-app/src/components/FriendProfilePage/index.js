@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { addFriendThunk, deleteFriendThunk } from "../../store/friends";
+import OpenLargeProfilePic from "../OpenLargeProfilePic";
+import OpenModalButton from "../OpenModalButton";
 
 
 const FriendProfilePage = () => {
@@ -282,6 +284,7 @@ const FriendProfilePage = () => {
             {friendButton()}
           </div>
           <div className="user-page-profile-pic-container">
+          < OpenModalButton modalComponent={<OpenLargeProfilePic user={profile} />} />
             <img style={profBorderColor()} className="user-page-profile-pic" src={`${profile.profilePicUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
           </div>
         </div>

@@ -1,7 +1,6 @@
 .edit-user-modal-container {
   display: flex;
   flex-direction: column;
-  margin: 15px;
   border: 2px;
   border-style: dotted;
 }
@@ -60,4 +59,3 @@
   animation: flicker 1.5s infinite alternate;
   color: #fff;
 }
-
