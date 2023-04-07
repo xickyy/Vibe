@@ -70,7 +70,7 @@ const ShowPosts = () => {
               <p className="all-posts-name">{post.user.username}</p>
             </div>
             <p className="all-posts-body">{post.body}</p>
-            <p className="all-posts-mood">Mood: {post.mood}</p>
+            <p className="all-posts-mood">Feeling: {post.mood}</p>
             <div className="show-all-post-buttons">
               {userEdit(post)}
               {userDelete(post.id, post.userId)}
