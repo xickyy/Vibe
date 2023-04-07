@@ -65,14 +65,16 @@ const ShowPosts = () => {
           <div key={post.id} className='post-container'>
             <div className="all-post-name-img-container">
               <Link to={`/users/${post.user.id}`}>
-              <img className="post-profile-pic" src={post.user.profilePicUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
+                <img className="post-profile-pic" src={post.user.profilePicUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPObbT7NWyvicPB8jEGbaoMhmJ9DZNq-I2sg&usqp=CAU'} alt=''></img>
               </Link>
               <p className="all-posts-name">{post.user.username}</p>
             </div>
             <p className="all-posts-body">{post.body}</p>
             <p className="all-posts-mood">Mood: {post.mood}</p>
-            {userEdit(post)}
-            {userDelete(post.id, post.userId)}
+            <div className="show-all-post-buttons">
+              {userEdit(post)}
+              {userDelete(post.id, post.userId)}
+            </div>
           </div>
         ))}
     </div>
