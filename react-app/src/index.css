@@ -48,17 +48,7 @@ button:hover {
   }
 }
 
-/* button:hover {
-    box-shadow:
-    0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 20px aqua,
-        0 0 40px aqua,
-        0 0 40px aqua,
-        0 0 50px aqua,
-        0 0 75px aqua;
-} */
+
 
 ::placeholder {
   color: aqua;
@@ -66,4 +56,18 @@ button:hover {
 
 div#modal-content {
   background-color: rgb(0, 0, 0);
+}
+
+div#modal-content img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+footer {
+  color: aqua;
+  text-align: center;
+}
+
+.fa-brands {
+  color: deeppink;
 }
