@@ -5,6 +5,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CreatePost from '../CreatePost';
 import ShowPosts from "../ShowPosts";
+import Footer from "../Footer";
 
 function HomePage () {
 
@@ -16,11 +17,12 @@ function HomePage () {
 
   if(userState.user){
     return (
-      <>
-      <div>Home</div>
+      <div className="home-page-components">
       <CreatePost />
       <ShowPosts />
-      </>
+      <br></br>
+      <Footer />
+      </div>
     )
   } else {
     return (

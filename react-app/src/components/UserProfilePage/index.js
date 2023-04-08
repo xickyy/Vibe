@@ -30,9 +30,8 @@ const UserProfilePage = () => {
       setFriendsList(data);
     };
     fetchData().then(getFriends()).then(() => setIsLoaded(true));
-  }, [userId]);
+  }, [userId, currentUser]);
 
-  console.log('#####', currentUser)
 
   const ifFriends = () => {
     if(currentUser && currentUser.friends && currentUser.friends.length === 0) {

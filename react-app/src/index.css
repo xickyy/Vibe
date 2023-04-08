@@ -62,3 +62,12 @@ div#modal-content img {
   max-width: 300px;
   max-height: 300px;
 }
+
+footer {
+  color: aqua;
+  text-align: center;
+}
+
+.fa-brands {
+  color: deeppink;
+}
