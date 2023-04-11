@@ -113,8 +113,9 @@ function EditUserModal({ user }) {
 					Profile Picture Url
 					<input
 						className="edit-user-input-boxes"
-						type="text"
-						value={profilePic}
+						type="file"
+						// value={profilePic}
+						accept="image/*"
 						onChange={(e) => setProfilePic(e.target.value)}
 					/>
 				</label>

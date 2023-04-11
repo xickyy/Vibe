@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import User, Boolean, db
 from app.forms import EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 user_routes = Blueprint('users', __name__)
 
@@ -53,10 +54,32 @@ def edit_user(user_id):
         if user is None:
             return {'errors': ['Product not found']}, 404
 
+        if "image" not in request.files:
+            return {"errors": "image required"}, 400
+
+        image = request.files["image"]
+
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+        # if the dictionary doesn't have a filename key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+        # we can use the
+        # new_image = User(user=current_user, url=url)
+        # db.session.add(new_image)
+
         user.username = form.username.data
         user.first_name = form.first_name.data
         user.last_name = form.last_name.data
-        user.profile_pic_url = form.profile_pic_url.data
+        user.profile_pic_url = url
         user.bio = form.bio.data
         user.zodiac = form.zodiac.data
         user.height = form.height.data
@@ -80,6 +103,8 @@ def edit_user(user_id):
         booleans.card_b = form.card_b.data
         booleans.relationship_b = form.relationship_b.data
         booleans.background_b = form.background_b.data
+
+
 
         db.session.commit()
         return user.to_dict(), booleans.to_dict()
