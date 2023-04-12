@@ -55,7 +55,7 @@ function EditUserModal({ user }) {
 			if (data) {
 				setErrors(data);
 			} else {
-				closeModal();
+				closeModal()
 			}
 		} else {
 			setErrors([

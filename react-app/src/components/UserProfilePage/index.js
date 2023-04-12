@@ -11,26 +11,30 @@ const UserProfilePage = () => {
   const [currentUser, setUser] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [friendsList, setFriendsList] = useState([]);
-
   let userState = useSelector((state) => state.session);
   let userId;
   if (userState.user) {
     userId = userState.user.id;
   }
 
+  const dependancy = {...currentUser};
+  delete dependancy.booleans
+  delete dependancy.friends
+  console.log(dependancy)
+
   useEffect(() => {
     const fetchData = async () => {
       const userResponse = await fetch(`/api/users/${userId}`);
       const user = await userResponse.json();
-      setUser(user);
+      return setUser(user);
     };
     const getFriends = async () => {
       const response = await fetch('/api/friends/display-friends');
       const data = await response.json();
-      setFriendsList(data);
+      return setFriendsList(data);
     };
     fetchData().then(getFriends()).then(() => setIsLoaded(true));
-  }, [userId, currentUser]);
+  }, [userId, dependancy]);
 
 
   const ifFriends = () => {

@@ -73,10 +73,12 @@ input:focus {
   margin-top: 5px;
   width: 382px;
   height: 200px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #fff, 0 0 30px purple, 0 0 40px aqua, 0 0 50px purple, 0 0 60px purple, 0 0 70px aqua, 0 0 80px aqua;
 }
 
 .dataResult::-webkit-scrollbar {
@@ -93,15 +95,19 @@ input:focus {
 
 .dataItem p {
   margin-left: 10px;
+  color: aqua;
 }
+
 
 a.dataItem {
   text-decoration: none;
 }
 
 a.dataItem:hover {
-  background-color: lightgray;
+  background-color: rgb(194, 46, 194);
+  color: black;
 }
+
 
 #clearBtn {
   display: flex;
