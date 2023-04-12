@@ -17,11 +17,6 @@ const UserProfilePage = () => {
     userId = userState.user.id;
   }
 
-  const dependancy = {...currentUser};
-  delete dependancy.booleans
-  delete dependancy.friends
-  console.log(dependancy)
-
   useEffect(() => {
     const fetchData = async () => {
       const userResponse = await fetch(`/api/users/${userId}`);
@@ -34,7 +29,7 @@ const UserProfilePage = () => {
       return setFriendsList(data);
     };
     fetchData().then(getFriends()).then(() => setIsLoaded(true));
-  }, [userId, dependancy]);
+  }, [userId, currentUser]);
 
 
   const ifFriends = () => {
