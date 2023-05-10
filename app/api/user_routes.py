@@ -54,10 +54,10 @@ def edit_user(user_id):
         if user is None:
             return {'errors': ['Product not found']}, 404
 
-        if "image" not in request.files:
+        if "profile_pic_url" not in request.files:
             return {"errors": "image required"}, 400
 
-        image = request.files["image"]
+        image = request.files["profile_pic_url"]
 
         if not allowed_file(image.filename):
             return {"errors": "file type not permitted"}, 400

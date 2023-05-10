@@ -84,11 +84,12 @@ function EditUserModal({ user }) {
 				<p className="edit-user-info-text">Blue checkmarks indicate weather or not you wish to display that information on your profile.</p>
 			</div>
 			<form className="edit-user-details-container" onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
+				{/* <ul>
+					{errors && errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
+				{console.log('EEEEEEEEEEEEEEEEEE', errors)} */}
 				<label className="edit-user-labels">
 					Email
 					<input
