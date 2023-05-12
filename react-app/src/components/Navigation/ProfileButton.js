@@ -33,11 +33,14 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
+    // const closeMenu = (e) => {
+    //   if (!ulRef.current.contains(e.target)) {
+    //     setShowMenu(false);
+    //   }
+    // };
+    
+    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    const closeMenu = () => setShowMenu(false);
 
     document.addEventListener("click", closeMenu);
 
