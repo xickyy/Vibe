@@ -113,10 +113,23 @@ function EditUserModal({ user }) {
 					Profile Picture Url
 					<input
 						className="edit-user-input-boxes"
-						type="text"
-						value={profilePic}
+						id="file"
+						type="file"
 						onChange={(e) => setProfilePic(e.target.value)}
+						accept="image/*"
+						name="image"
 					/>
+					{profilePic ? (
+            <img
+              className="signup-form-photo"
+              src={URL.createObjectURL(profilePic)}
+              alt="Profile Picture Preview"
+            />
+          ) : (
+            <label htmlFor="file" className="signup-form-input-label">
+              <i className="fa-solid fa-camera signup-camera"></i>
+            </label>
+          )}
 				</label>
 				<label className="edit-user-labels">
 					First Name

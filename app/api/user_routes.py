@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import User, Boolean, db
 from app.forms import EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.aws import upload_file_to_s3, allowed_file, get_unique_filename
 
 user_routes = Blueprint('users', __name__)
 
@@ -50,13 +51,27 @@ def edit_user(user_id):
         user = User.query.get(user_id)
         booleans = Boolean.query.get(user_id)
 
+        url = None
+
+        if "image" in request.files:
+            image = request.files['image']
+            if not allowed_file(image.filename):
+                return {"errors": "file type not permitted"}
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+            url = upload["url"]
+
+
         if user is None:
             return {'errors': ['Product not found']}, 404
 
         user.username = form.username.data
         user.first_name = form.first_name.data
         user.last_name = form.last_name.data
-        user.profile_pic_url = form.profile_pic_url.data
+        user.profile_pic_url = url
         user.bio = form.bio.data
         user.zodiac = form.zodiac.data
         user.height = form.height.data

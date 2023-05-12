@@ -26,7 +26,7 @@ class EditUserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), username_exists])
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
-    profile_pic_url = StringField('Profile Picture Url')
+    profile_pic_url = StringField('Profile Picture Url', validators = [])
     bio = StringField('Bio')
     zodiac = StringField('Zodiac Sign')
     height = StringField('Height')
