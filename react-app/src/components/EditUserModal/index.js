@@ -119,7 +119,7 @@ function EditUserModal({ user }) {
 						accept="image/*"
 						name="image"
 					/>
-					{profilePic ? (
+					{/* {profilePic ? (
             <img
               className="signup-form-photo"
               src={URL.createObjectURL(profilePic)}
@@ -129,7 +129,7 @@ function EditUserModal({ user }) {
             <label htmlFor="file" className="signup-form-input-label">
               <i className="fa-solid fa-camera signup-camera"></i>
             </label>
-          )}
+          )} */}
 				</label>
 				<label className="edit-user-labels">
 					First Name
