@@ -115,7 +115,7 @@ function EditUserModal({ user }) {
 						className="edit-user-input-boxes"
 						id="file"
 						type="file"
-						onChange={(e) => setProfilePic(e.target.value)}
+						onChange={(e) => setProfilePic(e.target.type === "file" ? e.target.files[0] : e.target.value)}
 						accept="image/*"
 						name="image"
 					/>
