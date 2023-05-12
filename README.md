@@ -10,6 +10,8 @@ Some of the technologies ive used for this project are having a python backend f
 most of the front end is written in javascript whilst utalizing React and Jsx for a smooth
 user experience.
 
+A few things i have planned next to add to this site is AWS for uploading images and having a messaging system that uses sockets.io
+
 
 ## Getting started
 1. Clone this repository (only this branch)
