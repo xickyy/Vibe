@@ -64,6 +64,12 @@ function EditUserModal({ user }) {
 		}
 	};
 
+	const deleteFunc = () => {
+		if (userId !== 1) {
+			return <button onClick={handleDelete}>Delete Profile</button>
+		}
+	}
+
 	const handleDelete = () => {
 		const confirm = window.confirm(
 			`Are you sure you wish to delete you're profile? there is no reversing this action but you can always make a new account`
@@ -298,7 +304,7 @@ function EditUserModal({ user }) {
 					</div>
 				</label>
 				<div className="edit-user-save-delete-buttons">
-					<button onClick={handleDelete}>Delete Profile</button>
+					{deleteFunc()}
 					<button type="submit">Save Changes</button>
 				</div>
 			</form>
