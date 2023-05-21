@@ -50,6 +50,7 @@ function CreatePost() {
           <label className="create-post-body">
             <p className="create-post-label-body">Body:</p>
             <textarea
+              maxLength={255}
               type="text"
               value={body}
               required
