@@ -49,13 +49,12 @@ export function Modal() {
     <div id="modal">
       <div id="modal-background" onClick={closeModal} />
       <div id="modal-content">
-      <i className='fa-solid fa-arrow-up-right-from-square' id='clearBtn' onClick={closeModal}></i>
+      <i className="fa-regular fa-circle-xmark" id='clearBtn' onClick={closeModal}></i>
         {modalContent}
       </div>
     </div>,
     modalRef.current
   );
 }
-
 
 export const useModal = () => useContext(ModalContext);
