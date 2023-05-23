@@ -29,10 +29,17 @@ def seed_posts():
         user_id=4,
         date= datetime.datetime(2023, 6, 5, 12, 7, 50, 873302))
 
+    post5 = Post(
+        body='This site is way cooler than Facebook!',
+        mood='Excited!',
+        user_id=5,
+        date= datetime.datetime(2023, 6, 6, 12, 7, 50, 873302))
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
     db.session.add(post4)
+    db.session.add(post5)
     db.session.commit()
 
 

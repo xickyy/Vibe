@@ -20,9 +20,27 @@ def seed_friends():
         user_id=1,
         friend_id=3)
 
+    link4 = Friend(
+        friend_rank=0,
+        user_id=4,
+        friend_id=3)
+
+    link5 = Friend(
+        friend_rank=0,
+        user_id=3,
+        friend_id=4)
+
+    link6 = Friend(
+        friend_rank=0,
+        user_id=4,
+        friend_id=1)
+
     db.session.add(link1)
     db.session.add(link2)
     db.session.add(link3)
+    db.session.add(link4)
+    db.session.add(link5)
+    db.session.add(link6)
     db.session.commit()
 
 

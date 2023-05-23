@@ -80,10 +80,30 @@ def seed_users():
         trim_color='chartreuse',
         password='qqwweerr')
 
+    jeff = User(
+        username='jeffy',
+        first_name='Hello',
+        last_name='There!',
+        profile_pic_url='https://1fid.com/wp-content/uploads/2022/06/Twitter-profile-picture-4-1024x1024.jpg',
+        bio='Everyone knows who I am, but just in case you dont...you do now!',
+        zodiac='Leo',
+        height='4"11',
+        relationship_status="Hopless Romantic",
+        birthday='09-18-2001',
+        motto='Dont worry bout me, worry bout you.',
+        card_img_url='https://bestpartybanners-orders.s3.eu-west-2.amazonaws.com/artwork/preview/BLACKANDWHITED1-preview.jpg',
+        profile_background_img_url='https://i.pinimg.com/originals/e5/a5/e3/e5a5e326c1f6c4215d32da54c4c593dc.jpg',
+        email='jeff@aa.io',
+        text_color='white',
+        theme_color='black',
+        trim_color='white',
+        password='password1')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(xickyy)
+    db.session.add(jeff)
     db.session.commit()
 
 
