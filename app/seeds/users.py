@@ -123,12 +123,40 @@ def seed_users():
         trim_color='blueviolet',
         password='password1')
 
+    mario = User(
+        username='mushroom man',
+        first_name='Itsa Me!',
+        last_name='Mario!',
+        profile_pic_url='https://cdn.mos.cms.futurecdn.net/q67fyfxLv6gDp3PxKq9FYg.jpg',
+        bio='''This one is for my one and only true love
+            Princess Peach
+            Peach, you're so cool
+            And with my star, we're gonna rule
+            Peach, understand
+            I'm gonna love you 'til the very end.
+            Peaches, Peaches, Peaches, Peaches, Peaches
+            Peaches, Peaches, Peaches, Peaches, Peaches
+            I love you, oh''',
+        zodiac='Aquarius',
+        height='3"7',
+        relationship_status="Married",
+        birthday='02-07-1996',
+        motto='Mamma mia!',
+        card_img_url='https://images.nintendolife.com/11a3fdc9f07b4/super-mario-galaxy-banner.large.jpg',
+        profile_background_img_url='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f7f5a38d-f3f8-4e8a-bfb3-237986116883/dfptbg2-cbbda489-3a37-4755-9c63-ea1c5eda2806.jpg/v1/fill/w_1280,h_720,q_75,strp/my_super_mario_wallpaper_by_hejsanivve23_dfptbg2-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvZjdmNWEzOGQtZjNmOC00ZThhLWJmYjMtMjM3OTg2MTE2ODgzXC9kZnB0YmcyLWNiYmRhNDg5LTNhMzctNDc1NS05YzYzLWVhMWM1ZWRhMjgwNi5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.auXLPYYexC_d3W0m3fJ25CqQsw5iTTJS7loayg-XejQ',
+        email='mario@aa.io',
+        text_color='white',
+        theme_color='aqua',
+        trim_color='white',
+        password='password1')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(xickyy)
     db.session.add(jeff)
     db.session.add(jack)
+    db.session.add(mario)
     db.session.commit()
 
 
