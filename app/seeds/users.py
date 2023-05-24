@@ -99,11 +99,36 @@ def seed_users():
         trim_color='white',
         password='password1')
 
+    jack = User(
+        username='jackboii',
+        first_name='Merry',
+        last_name='Christmas!',
+        profile_pic_url='https://lumiere-a.akamaihd.net/v1/images/ct_video_thenightmarebeforechristmas_jackskellington_dd_0b91db8e.jpeg',
+        bio='''This is Halloween, this is Halloween
+            Pumpkins scream in the dead of night
+            This is Halloween, everybody make a scene
+            Trick or treat 'til the neighbors gonna die of fright
+            It's our town, everybody scream
+            In this town of Halloween''',
+        zodiac='Sagittarius',
+        height='6"11',
+        relationship_status="It's Complicated",
+        birthday='03-11-1982',
+        motto='Halloween is the new Christmas!',
+        card_img_url='https://i.pinimg.com/originals/47/b9/68/47b968422309d4378b4b40b7823786e4.jpg',
+        profile_background_img_url='https://wallpaperset.com/w/full/f/3/e/402792.jpg',
+        email='jack@aa.io',
+        text_color='crimson',
+        theme_color='black',
+        trim_color='blueviolet',
+        password='password1')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(xickyy)
     db.session.add(jeff)
+    db.session.add(jack)
     db.session.commit()
 
 
