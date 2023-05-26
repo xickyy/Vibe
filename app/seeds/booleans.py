@@ -103,6 +103,20 @@ def seed_booleans():
         user_id=7
 )
 
+    table8 = Boolean(
+        first_name_b=True,
+        last_name_b=True,
+        bio_b=True,
+        birthday_b=True,
+        zodiac_b=True,
+        height_b=True,
+        motto_b=True,
+        card_b=True,
+        relationship_b=True,
+        background_b=True,
+        user_id=8
+)
+
     db.session.add(table1)
     db.session.add(table2)
     db.session.add(table3)
@@ -110,6 +124,7 @@ def seed_booleans():
     db.session.add(table5)
     db.session.add(table6)
     db.session.add(table7)
+    db.session.add(table8)
     db.session.commit()
 
 

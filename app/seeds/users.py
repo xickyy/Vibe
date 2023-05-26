@@ -150,6 +150,25 @@ def seed_users():
         trim_color='white',
         password='password1')
 
+    godzilla = User(
+        username='Godzilla',
+        first_name='Mr.',
+        last_name='Zilla',
+        profile_pic_url='https://www.hollywoodreporter.com/wp-content/uploads/2015/06/Godzilla2014_20.jpg',
+        bio='''Raaawrrrr roarrrr RAWWRRR rughhhhhh RaaRRRRwwwRRR GRRRRRR RAHHH''',
+        zodiac='Aquarius',
+        height='587"9',
+        relationship_status="Hopeless Romantic",
+        birthday='09-22-1962',
+        motto='RAWRRR',
+        card_img_url='https://w0.peakpx.com/wallpaper/747/1013/HD-wallpaper-godzilla-8k-banner.jpg',
+        profile_background_img_url='https://images7.alphacoders.com/100/thumb-1920-1003272.jpg',
+        email='godzilla@aa.io',
+        text_color='white',
+        theme_color='aqua',
+        trim_color='white',
+        password='password1')
+
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
@@ -157,6 +176,7 @@ def seed_users():
     db.session.add(jeff)
     db.session.add(jack)
     db.session.add(mario)
+    db.session.add(godzilla)
     db.session.commit()
 
 
