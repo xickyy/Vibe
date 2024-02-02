@@ -8,6 +8,8 @@ profile page!
 
 in the future there will be many more features such as a messaging system, profile music, aws implimentation, and much more!
 
+-Currently worrking on implimenting a messaging system
+
 link to live site - https://vibe-qrb9.onrender.com/
 
 Some of the technologies ive used for this project are having a python backend for all my Api's
@@ -73,4 +75,4 @@ here are some seeder accounts that provide examples of the customization you can
 *
 ![](vibe-demo-prof.png)
 *
-![](vibe-bobbie-prof.png) 
+![](vibe-bobbie-prof.png)
