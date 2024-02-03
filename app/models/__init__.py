@@ -3,4 +3,5 @@ from .user import User
 from .friends import Friend
 from .posts import Post
 from .booleans import Boolean
+from .messages import Message
 from .db import environment, SCHEMA
